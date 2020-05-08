@@ -8,7 +8,7 @@ const saltRounds = 10
 
 const createUser = (req, res) => {
   const { firstName, lastName, email, password } = req.body
-  let sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)"
+  let sql = "INSERT INTO clients (first_name, last_name, email, password) VALUES (?, ?, ?, ?)"
 
   bcrypt.hash(password, saltRounds, function(err, hash) {
     let replacements = [firstName, lastName, email, hash]
