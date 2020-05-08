@@ -33,6 +33,7 @@ export default function ButtonAppBar() {
             BrightBird.
           </Typography>
           <Button color="inherit">Login</Button>
+          <Button color="secondary" variant='contained'>Sign up Free</Button>
         </Toolbar>
       </AppBar>
     </div>
