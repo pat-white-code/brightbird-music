@@ -1,9 +1,13 @@
 import React from 'react';
+import HomeHero from './HomeHero';
 
 const Home = () => {
-  return(
-    <h1>Welcome to Brightbird Music</h1>
-  )
+
+  return (
+    <>
+      <HomeHero />
+    </>
+  );
 }
 
 export default Home;
