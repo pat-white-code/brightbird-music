@@ -5,7 +5,7 @@ import Nav from './components/Nav'
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import { purple, indigo, teal } from '@material-ui/core/colors';
+import { indigo, teal } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {

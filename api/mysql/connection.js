@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+require('dotenv').config();
 
 class Connection {
   constructor(){
@@ -8,8 +9,7 @@ class Connection {
       connectionLimit: 100,
       host: '35.222.166.74',
       user: 'root',
-      password: 'JoeBiden354',
-      // password: process.env.connection_password,
+      password: process.env.CONNECTION_PASSWORD,
       database: 'admin'
       })
     return this.pool;

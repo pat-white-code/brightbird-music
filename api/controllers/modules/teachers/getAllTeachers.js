@@ -1,5 +1,5 @@
 const pool = require('../../../mysql/connection');
-const mysql = require('mysql');
+// const mysql = require('mysql');
 
 
 const getAllTeachers = (req, res) => {

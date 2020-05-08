@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +33,11 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BrightBird.
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" className={classes.menuButton} onClick={()=>{
+            axios.get('/test')
+              .then(res => console.log(res))
+            }}>Test Server</Button>
+          <Button color="inherit" className={classes.menuButton}>Login</Button>
           <Button color="secondary" variant='contained'>Sign up Free</Button>
         </Toolbar>
       </AppBar>
