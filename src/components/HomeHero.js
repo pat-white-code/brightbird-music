@@ -19,7 +19,7 @@ const HomeHero = () => {
   return (
     <>
       <Container maxWidth="lg" className={classes.root}>
-          <Typography variant='h1'>Brightbird. </Typography>
+          <Typography variant='h1'>BrightBird Music  </Typography>
       </Container>
     </>
   );
