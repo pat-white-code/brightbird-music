@@ -12,11 +12,7 @@ const driveTimesRouter = require('./routes/driveTimes');
 const requestsRouter = require('./routes/requests');
 const lessonsRouter = require('./routes/lessons');
 const usersRouter = require('./routes/users');
-
-// const exphbs = require('express-handlebars');
-// app.engine('handlebars', exphbs());
-// app.set('view engine', 'handlebars');
-// app.use('/public', express.static(path.join(__dirname, 'public')));
+const addressesRouter = require('./routes/addresses');
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
@@ -38,6 +34,7 @@ app.use('/api/driveTimes', driveTimesRouter);
 app.use('/api/requests', requestsRouter);
 app.use('/api/lessons', lessonsRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/addresses', addressesRouter);
 
 
 app.listen(port, ()=> {
