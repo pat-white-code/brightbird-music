@@ -1,3 +1,3 @@
-const initialLogin = (userId) => {
+export const initialLogin = (userId) => {
   return {type: 'INITIAL_LOGIN', payload: userId}
 }

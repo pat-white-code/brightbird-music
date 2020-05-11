@@ -16,7 +16,7 @@ const createUser = (req, res) => {
   
     pool.query(sql, (err, result) => {
       if (err) {
-        if (err.code === 'ER_DUP_ENTRY') return res.status(409).send('Username is taken')
+        if (err.code === 'ER_DUP_ENTRY') return res.status(409).send('Email Address is taken')
         return handleSQLError(res, err)
       }
       return res.json({message: 'User Created.', id: result.insertId})
