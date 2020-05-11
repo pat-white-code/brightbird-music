@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, makeStyles, Container } from '@material-ui/core';
-import AddressForm from './AddressForm';
+import AddressForm from '../containers/AddressForm';
 
 const useStyles = makeStyles({
   root: {

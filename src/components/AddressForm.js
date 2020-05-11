@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
 import state from '../redux/state';
-// import axios from 'axios';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,17 +13,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddressForm = () => {
+const AddressForm = (props) => {
   const classes = useStyles();
-  const [street, setStreet] = useState('');
+  const [address, setAddress] = useState('');
   const [streetLineTwo, setStreetLineTwo] = useState('');
   const [city, setCity] = useState('');
   const [geoState, setGeoState] = useState('');
   const [zipCode, setZipCode] = useState('');
 
-  const handleStreet = e => {
-    console.log('STREET: ',street)
-    setStreet(e.target.value)
+  const handleAddress = e => {
+    console.log('Address : ',address)
+    setAddress(e.target.value)
   }
   const handleStreetLineTwo = e => {
     console.log('Street 2:', streetLineTwo)
@@ -46,11 +46,14 @@ const AddressForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(state);
-    // AXIOS HERE
+    axios.post(`/api/addresses/${props.user.id}`, 
+      { address, streetLineTwo, city, geoState, zipCode })
+      .then(res => console.log(res));
+
   }
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
-      <TextField id='street' label="Street" required onChange={handleStreet} />
+      <TextField id='address' label="Address" required onChange={handleAddress} />
       <TextField id='streetLineTwo' label="Street Line 2" onChange={handleStreetLineTwo} />
       <TextField id='city' label="City" onChange={handleCity} required />
       <TextField id='geoState' label='State' onChange={handleGeoState} />
