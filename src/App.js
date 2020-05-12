@@ -12,6 +12,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { indigo, teal } from '@material-ui/core/colors';
 
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -31,8 +34,10 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          <Nav />
-          <Router />
+          <MuiPickersUtilsProvider utils={MomentUtils}>
+            <Nav />
+            <Router />
+          </MuiPickersUtilsProvider>
         </ThemeProvider>
       </BrowserRouter>
     </Provider>

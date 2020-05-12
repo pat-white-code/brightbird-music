@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
-import axios from 'axios';
+import DatePicker from './DatePicker';
+// import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,48 +15,55 @@ const useStyles = makeStyles((theme) => ({
 
 const AddressForm = (props) => {
   const classes = useStyles();
-  const [address, setAddress] = useState('');
-  const [streetLineTwo, setStreetLineTwo] = useState('');
-  const [city, setCity] = useState('');
-  const [geoState, setGeoState] = useState('');
-  const [zipCode, setZipCode] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  // const [selectedDate, handleDateChange] = useState(new Date());
+  const [dob, setDob] = useState(new Date());
+  const [instrumentId, setInstrumentId] = useState(0);
+  const [experience, setExperience] = useState(0);
+  const [lessonDuration, setLessonDuration] = useState(0);
 
-  const handleAddress = e => {
-    console.log('Address : ',address)
-    setAddress(e.target.value)
+  // const handleDateChange = () => {
+  //   console.log('SELECTED DATE: ', selectedDate)
+  //   setSelectedDate
+  // }
+
+  const handleFirstName = e => {
+    console.log('firstName : ', firstName)
+    setFirstName(e.target.value)
   }
-  const handleStreetLineTwo = e => {
-    console.log('Street 2:', streetLineTwo)
-    setStreetLineTwo(e.target.value)
-  }
-  const handleCity = e => {
-    console.log('CITY: ',city)
-    setCity(e.target.value)
-  }
-  const handleGeoState = e => {
-    console.log('GeoState: ',geoState)
-    setGeoState(e.target.value)
+  const handleLastName = e => {
+    console.log('Last Name:', lastName)
+    setLastName(e.target.value)
   }
 
-  const handleZipCode = e => {
-    console.log('ZIP CODE:', zipCode)
-    setZipCode(e.target.value)
+  const handleInstrumentId = e => {
+    console.log('INSTRUMENT ID: ',instrumentId)
+    setInstrumentId(e.target.value)
+  }
+
+  const handleExperience = e => {
+    console.log('Experience:', experience)
+    setExperience(e.target.value)
+  }
+  const handleLessonDuration = e => {
+    console.log('LESSON DURATION:', lessonDuration)
+    setLessonDuration(e.target.value)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`/api/addresses/${props.user.id}`, 
-      { address, streetLineTwo, city, geoState, zipCode })
-      .then(res => console.log(res));
+    console.log( firstName, lastName, dob, instrumentId, experience, lessonDuration );
 
   }
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
-      <TextField id='address' label="Address" required onChange={handleAddress} />
-      <TextField id='streetLineTwo' label="Street Line 2" onChange={handleStreetLineTwo} />
-      <TextField id='city' label="City" onChange={handleCity} required />
-      <TextField id='geoState' label='State' onChange={handleGeoState} />
-      <TextField id='zipcode' label='Zip Code' required  onChange={handleZipCode}/>
+      <TextField id='firstName' label="First Name" required onChange={handleFirstName} />
+      <TextField id='lastName' label="Last Name" onChange={handleLastName} />
+      <DatePicker dob={dob} setDob={setDob} />
+      <TextField id='instrument' label='Instrument' onChange={handleInstrumentId} />
+      <TextField id='experience' label='Experience Level' required  onChange={handleExperience}/>
+      <TextField id='lessonDuration' label='Preferred lesson Duration' required  onChange={handleLessonDuration}/>
       <Button variant='contained' color='secondary' type='submit'>Next </Button>
     </form>
   );
