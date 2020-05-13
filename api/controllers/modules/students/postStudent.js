@@ -15,11 +15,11 @@ const postStudent = (req, res) => {
     VALUES
       (?, ?, ?, ?, 1, ?);
   `
-  let replacements = [req.body.clientId, req.body.firstName, req.body.lastName, req.body.dob, req.body.address]
+  let replacements = [req.body.clientId, req.body.firstName, req.body.lastName, req.body.dob, req.body.addressId]
   sql = mysql.format(sql, replacements);
   pool.query(sql, (err, results)=> {
     if(err){return res.status(500).send(err)}
-    return res.status(201).send(`student created with id: ${results.insertId}`)
+    return res.status(201).json({message:'student created', id:results.insertId})
   })
 }
 

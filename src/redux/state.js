@@ -2,7 +2,8 @@ const state = {
   user: {
     email: null,
     id: null,
-    isLoggedIn: false
+    isLoggedIn: false,
+    addressId: null
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, makeStyles, Container } from '@material-ui/core';
-import StudentForm from '../components/StudentForm';
+import StudentForm from '../containers/StudentForm';
 
 const useStyles = makeStyles({
   root: {

@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
 import state from '../redux/state';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddressForm = (props) => {
+  const history = useHistory();
   const classes = useStyles();
   const [address, setAddress] = useState('');
   const [streetLineTwo, setStreetLineTwo] = useState('');
@@ -48,8 +52,9 @@ const AddressForm = (props) => {
     console.log(state);
     axios.post(`/api/addresses/${props.user.id}`, 
       { address, streetLineTwo, city, geoState, zipCode })
-      .then(res => console.log(res));
-
+      .then(res => props.initialAddress(res.data.id))
+      .then(()=> history.push('/signup/student'));
+      // .catch(err=> setErr(err.response.data));
   }
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} >

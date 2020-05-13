@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@material-ui/core';
 import DatePicker from './DatePicker';
-// import axios from 'axios';
+import moment from 'moment';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,9 +53,15 @@ const StudentForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log( firstName, lastName, dob, instrumentId, experience, lessonDuration );
-
-  }
+    let studentAge = Math.abs(moment(dob).diff(moment(), 'years'));
+    console.log( firstName, lastName, dob, instrumentId, experience, lessonDuration, studentAge );
+    axios.post('/api/students', {firstName, lastName, dob, addressId: props.user.addressId, clientId:props.user.id})
+      .then(res => console.log('RES:',res, 'STUDENT AGE:', studentAge))
+    }
+      // insert into students:
+    // {firstName: 'John' lastName: 'Doe', addressId: state.user.addressId clientId: state.user.id }
+    // insert into service_requests:
+    // {studentId: returned from last form, instrumentId, lessonDuration addressId: state.user.addressId, }
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
       <TextField id='firstName' label="First Name" required onChange={handleFirstName} />
