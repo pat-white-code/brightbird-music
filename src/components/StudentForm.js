@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@material-ui/core';
 import DatePicker from './DatePicker';
 // import axios from 'axios';
 
@@ -11,9 +11,13 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     },
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
 }));
 
-const AddressForm = (props) => {
+const StudentForm = (props) => {
   const classes = useStyles();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -21,12 +25,7 @@ const AddressForm = (props) => {
   const [dob, setDob] = useState(new Date());
   const [instrumentId, setInstrumentId] = useState(0);
   const [experience, setExperience] = useState(0);
-  const [lessonDuration, setLessonDuration] = useState(0);
-
-  // const handleDateChange = () => {
-  //   console.log('SELECTED DATE: ', selectedDate)
-  //   setSelectedDate
-  // }
+  const [lessonDuration, setLessonDuration] = useState(30);
 
   const handleFirstName = e => {
     console.log('firstName : ', firstName)
@@ -61,12 +60,62 @@ const AddressForm = (props) => {
       <TextField id='firstName' label="First Name" required onChange={handleFirstName} />
       <TextField id='lastName' label="Last Name" onChange={handleLastName} />
       <DatePicker dob={dob} setDob={setDob} />
-      <TextField id='instrument' label='Instrument' onChange={handleInstrumentId} />
-      <TextField id='experience' label='Experience Level' required  onChange={handleExperience}/>
-      <TextField id='lessonDuration' label='Preferred lesson Duration' required  onChange={handleLessonDuration}/>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="instrument">Instrument</InputLabel>
+        <Select
+          labelId="instrument-select"
+          id="instrument"
+          value={instrumentId}
+          onChange={handleInstrumentId}
+        >
+          <MenuItem value={0}>Select Instrument</MenuItem>
+          <MenuItem value={1}>Piano</MenuItem>
+          <MenuItem value={2}>Guitar</MenuItem>
+          <MenuItem value={3}>Drums</MenuItem>
+          <MenuItem value={4}>Voice</MenuItem>
+          <MenuItem value={5}>Violin</MenuItem>
+          <MenuItem value={6}>Bass Guitar</MenuItem>
+          <MenuItem value={7}>Ukulele</MenuItem>
+          <MenuItem value={8}>Early Music Enrichment</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="experience">Years of Experience</InputLabel>
+        <Select
+          labelId="experience-select"
+          id="experience"
+          value={experience}
+          onChange={handleExperience}
+        >
+          <MenuItem value={0}>Beginner/Novice</MenuItem>
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+          <MenuItem value={6}>6</MenuItem>
+          <MenuItem value={7}>7</MenuItem>
+          <MenuItem value={8}>8+</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="lesson-duration">Preferred Lesson Duration</InputLabel>
+        <Select
+          labelId="lesson-duration-select"
+          id="lesson-duration"
+          value={lessonDuration}
+          onChange={handleLessonDuration}
+        >
+          <MenuItem value={30}>30-Min ($40) </MenuItem>
+          <MenuItem value={45}>45-Min ($56) </MenuItem>
+          <MenuItem value={60}>60-Min ($72) </MenuItem>
+        </Select>
+        <FormHelperText>Lessons providede Weekly</FormHelperText>
+      </FormControl>
+      <Button variant='contained' color='inherit'>Additional Student</Button>
       <Button variant='contained' color='secondary' type='submit'>Next </Button>
     </form>
   );
 }
 
-export default AddressForm;
+export default StudentForm;
