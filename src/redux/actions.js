@@ -3,12 +3,31 @@ import axios from 'axios';
 export const initialLogin = (userId) => {
   return {type: 'INITIAL_LOGIN', payload: userId}
 }
+export const setUserId = (userId) => {
+  return {type: 'SETS_USER_ID', payload: userId}
+}
 
 export const initialAddress = (addressId) => {
   return {type: 'INITIAL_ADDRESS', payload: addressId}
 }
 
+const isLoggedIn = () => {
+  return {type: 'USER_LOGS_IN'}
+}
 
+export const userLogin = (user) => {
+  return (dispatch) => {
+    console.log('USER', user);
+      axios.post('api/users/auth/login', user)
+          .then(json => {
+            console.log(json)
+            let userId = json.data.id
+            // document.cookie = "loggedIn=true;max-age=60*1000"
+            dispatch(isLoggedIn())
+            dispatch(setUserId(userId))
+            dispatch(fetchClientRequests(userId))})
+  }
+}
 
 export const fetchClientRequests = (userId) => {
   return (dispatch) => {

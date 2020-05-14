@@ -6,6 +6,8 @@ const user = (state = {}, action) => {
       return {...state, isLoggedIn: true}
     case 'INITIAL_LOGIN':
       return{...state, isLoggedIn: true, id:action.payload}
+    case 'SETS_USER_ID':
+      return {...state, id:action.payload}
     case 'INITIAL_ADDRESS':
       return{...state, addressId: action.payload}
     default: return state;

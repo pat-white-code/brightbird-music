@@ -69,8 +69,8 @@ export default function Login(props) {
       <Typography variant='h3'>Login</Typography>
       <form className={classes.root} noValidate autoComplete="off" 
             onSubmit={()=> {
-              props.userLogin(props.parentState);
-              history.push('/')
+              props.userLogin({email: username, password});
+              history.push('/availability')
               }}>
         <TextField id="username" label="Username" onChange={handleUsername} required />
         <TextField id="password" label="Password" type='password' onChange={handlePassword} required />
