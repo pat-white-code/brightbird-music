@@ -55,9 +55,13 @@ const StudentForm = (props) => {
     e.preventDefault();
     let studentAge = Math.abs(moment(dob).diff(moment(), 'years'));
     console.log( firstName, lastName, dob, instrumentId, experience, lessonDuration, studentAge );
-    axios.post('/api/students', {firstName, lastName, dob, addressId: props.user.addressId, clientId:props.user.id})
-      .then(res => console.log('RES:',res, 'STUDENT AGE:', studentAge))
-    }
+    axios.post('/api/students', {firstName:firstName, lastName:lastName, dob:dob, addressId: props.user.addressId, clientId:props.user.id})
+      .then(res => {
+        console.log(res)
+        axios.post('/api/requests', {studentId: res.data.id, instrumentId, lessonDuration, studentAge})
+        .then(res => console.log(res))
+      })
+  }
       // insert into students:
     // {firstName: 'John' lastName: 'Doe', addressId: state.user.addressId clientId: state.user.id }
     // insert into service_requests:

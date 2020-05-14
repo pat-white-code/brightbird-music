@@ -6,18 +6,18 @@ const postRequest = (req, res, next) => {
   // instrument_id and lesson_duration are user inputs
   let sql = `
   INSERT INTO service_requests (
-    student_id, instrument_id, lesson_duration
+    student_id, instrument_id, lesson_duration, student_age
   )
   VALUES
-  (?, ?, ?);
+  (?, ?, ?, ?);
   `;
-  let replacements = [req.body.studentId, req.body.instrumentId, req.body.lessonDuration];
+  let replacements = [req.body.studentId, req.body.instrumentId, req.body.lessonDuration, req.body.studentAge];
   sql = mysql.format(sql, replacements);
   pool.query(sql, (err, results)=> {
     if (err){return res.status(500).send(err)}
     req.body.requestId = results.insertId;
-    next();
-    // res.status(201).send(`request created with id ${results.insertId}`);
+    // next();
+    return res.status(201).json({message:'request created', id:results.insertId});
   })
 }
 
