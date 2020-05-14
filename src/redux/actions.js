@@ -23,12 +23,12 @@ export const fetchClientRequests = (userId) => {
 
 export const fetchQualifiedTeachers = (request) => {
   return (dispatch) => {
-  const [ id, student_age, instrument_id ] = request
-  axios.get(`api/teachers/?instId=${instrument_id}&zipCode=78746&studentAge=${student_age}`)
+  const [ id, student_age, instrument_id, zip_code ] = request
+  axios.get(`api/teachers/?instId=${instrument_id}&zipCode=${zip_code}&studentAge=${student_age}`)
     .then(res => {
       console.log(res)
       let teachers = res.data
-      dispatch({type:'FETCH_QUALIFIED_TEACHERS', payload: [id, [teachers]]})
+      dispatch({type:'FETCH_QUALIFIED_TEACHERS', payload: {requestId:id, teachers}})
     })
   }
 }
