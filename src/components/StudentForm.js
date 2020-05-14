@@ -62,10 +62,7 @@ const StudentForm = (props) => {
         .then(res => console.log(res))
       })
   }
-      // insert into students:
-    // {firstName: 'John' lastName: 'Doe', addressId: state.user.addressId clientId: state.user.id }
-    // insert into service_requests:
-    // {studentId: returned from last form, instrumentId, lessonDuration addressId: state.user.addressId, }
+  
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
       <TextField id='firstName' label="First Name" required onChange={handleFirstName} />

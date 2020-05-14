@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+// const mysql = require('mysql');
 const pool = require('../../../mysql/connection');
 
 const getStudents = (req, res) => {

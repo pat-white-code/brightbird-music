@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const fetch = require('node-fetch');
-const cors = require('cors');
+// const cors = require('cors');
 const moment = require('moment');
 
 
