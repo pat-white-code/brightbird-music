@@ -4,6 +4,7 @@ import Home from './components/Home';
 import ParentForm from './components/ParentSignup';
 import AddressSignup from './components/AddressSignup';
 import StudentSignup from './components/StudentSignup';
+import TeacherAvailability from './containers/TeacherAvailability';
 
 
 const Router = () => {
@@ -13,6 +14,7 @@ const Router = () => {
       <Route path='/signup/parent' component={ParentForm} />
       <Route path='/signup/address' component={AddressSignup} />
       <Route path='/signup/student' component={StudentSignup} />
+      <Route path='/availability' component={TeacherAvailability} />
     </Switch>
   )
 }

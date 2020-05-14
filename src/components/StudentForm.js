@@ -4,6 +4,7 @@ import { TextField, Button, FormControl, InputLabel, Select, MenuItem, FormHelpe
 import DatePicker from './DatePicker';
 import moment from 'moment';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,9 +21,10 @@ const useStyles = makeStyles((theme) => ({
 
 const StudentForm = (props) => {
   const classes = useStyles();
+  const history = useHistory();
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  // const [selectedDate, handleDateChange] = useState(new Date());
   const [dob, setDob] = useState(new Date());
   const [instrumentId, setInstrumentId] = useState(0);
   const [experience, setExperience] = useState(0);
@@ -55,14 +57,15 @@ const StudentForm = (props) => {
     e.preventDefault();
     let studentAge = Math.abs(moment(dob).diff(moment(), 'years'));
     console.log( firstName, lastName, dob, instrumentId, experience, lessonDuration, studentAge );
-    axios.post('/api/students', {firstName:firstName, lastName:lastName, dob:dob, addressId: props.user.addressId, clientId:props.user.id})
+    axios.post('/api/students', {firstName, lastName, dob, addressId: props.user.addressId, clientId:props.user.id})
       .then(res => {
         console.log(res)
         axios.post('/api/requests', {studentId: res.data.id, instrumentId, lessonDuration, studentAge})
         .then(res => console.log(res))
+        .then(()=> history.push('/availability'))
       })
   }
-  
+
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
       <TextField id='firstName' label="First Name" required onChange={handleFirstName} />

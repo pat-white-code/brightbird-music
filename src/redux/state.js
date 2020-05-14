@@ -4,7 +4,8 @@ const state = {
     id: null,
     isLoggedIn: false,
     addressId: null
-  }
+  },
+  requests: []
 }
 
 export default state;
