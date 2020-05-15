@@ -17,15 +17,14 @@ const isLoggedIn = () => {
 
 export const userLogin = (user) => {
   return (dispatch) => {
-    console.log('USER', user);
-      axios.post('api/users/auth/login', user)
-          .then(json => {
-            console.log(json)
-            let userId = json.data.id
-            // document.cookie = "loggedIn=true;max-age=60*1000"
-            dispatch(isLoggedIn())
-            dispatch(setUserId(userId))
-            dispatch(fetchClientRequests(userId))})
+    axios.post('api/users/auth/login', user)
+        .then(json => {
+          console.log(json)
+          let userId = json.data.id
+          // document.cookie = "loggedIn=true;max-age=60*1000"
+          dispatch(isLoggedIn())
+          dispatch(setUserId(userId))
+          dispatch(fetchClientRequests(userId))})
   }
 }
 
@@ -40,14 +39,35 @@ export const fetchClientRequests = (userId) => {
   }
 }
 
+// export const fetchTeacherAvailability = (userId) => {
+//   return (dispatch) => {
+//     axios.get(`/api/requests/client/${userId}`)
+//       .then(res => {
+//         console.log('FETCH REQUESTS:', res)
+//         let requests = res.data
+//         requests.forEach(request => {
+//           const { id, student_age, instrument_id, zip_code } = request
+//           axios.get(`api/teachers/?instId=${instrument_id}&zipCode=${zip_code}&studentAge=${student_age}`)
+//             .then(res => {
+//               console.log(res, 'REQUEST ID:', id)
+//               request.availableTeachers = res.data
+//               console.log(request);
+//               dispatch({type: 'FETCHES_TEACHER_AVAILABILITY', payload:request})
+//             })
+//             // .then(dispatch({type:'FETCHES_TEACHER_AVAILABILITY', payload:requests}))
+//         })
+//       })
+//   }
+// }
+
 export const fetchQualifiedTeachers = (request) => {
   return (dispatch) => {
-  const [ id, student_age, instrument_id, zip_code ] = request
-  axios.get(`api/teachers/?instId=${instrument_id}&zipCode=${zip_code}&studentAge=${student_age}`)
+  // const { id, student_age, instrument_id, zip_code } = request
+  axios.get(`api/teachers/?instId=${request.instrument_id}&zipCode=${request.zip_code}&studentAge=${request.student_age}`)
     .then(res => {
-      console.log(res)
+      console.log('FETCH QUALIFIED TEACHERS: ',res)
       let teachers = res.data
-      dispatch({type:'FETCH_QUALIFIED_TEACHERS', payload: {requestId:id, teachers}})
+      dispatch({type:'FETCH_QUALIFIED_TEACHERS', payload: {requestId:request.id, teachers}})
     })
   }
 }

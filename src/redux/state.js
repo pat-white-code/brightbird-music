@@ -5,7 +5,9 @@ const state = {
     isLoggedIn: false,
     addressId: null
   },
-  requests: []
+  requests: [],
+  requestIsLoaded: false,
+  // teacherAvailability: []
 }
 
 export default state;

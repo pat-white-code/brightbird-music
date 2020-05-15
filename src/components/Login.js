@@ -60,7 +60,7 @@ export default function Login(props) {
   }
 
   const handlePassword = (e)=> {
-    console.log('PASSWORD :', password)
+    // console.log('PASSWORD :', password)
     setPassword(e.target.value)
   }
 

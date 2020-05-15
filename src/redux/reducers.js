@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+// import state from './state';
 
 const user = (state = {}, action) => {
   switch(action.type) {
@@ -17,18 +18,47 @@ const user = (state = {}, action) => {
 const requests = (state =[], action) => {
   switch(action.type) {
     case 'FETCH_SUCCESSFUL':
-      return [action.payload];
+      return action.payload;
     default: return state;
     case 'FETCH_QUALIFIED_TEACHERS':
-      // payload: [request.id [teacher1, teacher2]]
-      return state.map(request => request.id === action.payload[0] ? (
-        {...request, availableTeachers: action.payload[1]}
+      // payload: {requestId, teachers:[teachers]}
+      return state.map(request => request.id === action.payload.requestId ? (
+        {...request, availableTeachers: action.payload.teachers}
       ) : (
         request
-      )) 
+      ))
+    // case 'FETCHES_TEACHER_SCHEDULE':
+    //   return state.map(request => request.id === action.payload.requestId ? (
+    //     request.availableTeachers.map(teacher=> teacher.id === payload.teacherId ? (
+    //       teacher.schedule = payload.schedule
+    //     ) : (
+    //       teacher
+    //     ))
+    //   ) : (
+    //     request
+    //   ))
+  }
+}
+
+// const teacherAvailability = (state = [], action) => {
+//   switch(action.type) {
+//     case 'FETCHES_TEACHER_AVAILABILITY':
+//       return [...state, action.payload];
+//     default: return state
+//   }
+// }
+
+const requestIsLoaded = (state = false, action) => {
+  let newState = {...state}
+  switch(action.type) {
+    case 'FETCH_SUCCESSFUL':
+      return newState.requestIsLoaded = true
+    default: return state;
   }
 }
 
 export default combineReducers({
-  user, requests
+  user, requests, 
+  // teacherAvailability, 
+  requestIsLoaded
 })

@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,8 +38,9 @@ export default function ButtonAppBar() {
             axios.get('/test')
               .then(res => console.log(res))
             }}>Test Server</Button>
-          <Button color="inherit" className={classes.menuButton}>Login</Button>
-          <Button color="secondary" variant='contained'>Sign up Free</Button>
+          <Link to="/login"><Button color="inherit" className={classes.menuButton}>Login</Button></Link>
+          <Link to="/availability"><Button color="inherit" className={classes.menuButton}>Availability</Button></Link>
+          <Link to="/signup/parent"><Button color="secondary" variant='contained'>Sign up Free</Button></Link>
         </Toolbar>
       </AppBar>
     </div>
