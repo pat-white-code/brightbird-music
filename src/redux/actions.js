@@ -72,6 +72,12 @@ export const fetchQualifiedTeachers = (request) => {
   }
 }
 
+export const fetchTeacherSchedule = request => {
+  return (dispatch) => {
+    request.availableTeachers.forEach(teacher => dispatch({type:'FETCHES_TEACHER_SCHEDULE', payload:{teacherId: teacher.teacher_id, schedule: [1, 2, 3]}}))
+  }
+}
+
 // export const getUserBusinesses = userId => {
 //   return (dispatch) => {
 //     axios.get(`/businesses/${userId}`)

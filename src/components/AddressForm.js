@@ -49,9 +49,10 @@ const AddressForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let fullAddress = `${address}, ${city}, ${geoState} ${zipCode}`;
     console.log(state);
     axios.post(`/api/addresses/${props.user.id}`, 
-      { address, streetLineTwo, city, geoState, zipCode })
+      { address:fullAddress, streetLineTwo, city, geoState, zipCode })
       .then(res => props.initialAddress(res.data.id))
       .then(()=> history.push('/signup/student'));
       // .catch(err=> setErr(err.response.data));
