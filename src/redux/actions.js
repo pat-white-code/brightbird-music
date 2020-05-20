@@ -57,7 +57,16 @@ export const promiseClientRequests = async (userId) => {
 export const getSchedulesByRequest = (request) => {
   return (dispatch) => {
     axios.get(`/api/schedules/request/${request.id}?instrumentId=${request.instrument_id}&zipCode=${request.zip_code}&studentAge=${request.student_age}`)
-      .then(schedules => dispatch({type: 'FETCHES_TEACHER_SCHEDULES', payload:schedules}))
+      .then(res => {
+        console.log(res);
+        let schedules = res.data;
+        let updatedSchedules = schedules.map(schedule => {
+          return {...schedule, driveTime:10}
+        })
+        dispatch({type: 'FETCHES_TEACHER_SCHEDULES', payload:updatedSchedules})
+      })
+      // .then(schedules => dispatch({type: 'FETCHES_TEACHER_SCHEDULES', payload:schedules}))
+        // dispatch({type: 'FETCHES_TEACHER_SCHEDULES', payload:schedules})
   }
 }
 
