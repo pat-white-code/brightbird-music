@@ -39,6 +39,10 @@ export const fetchClientRequests = (userId) => {
   }
 }
 
+export const setRequests = (requests) => {
+  return {type: 'SET_REQUESTS', payload:requests}
+}
+
 // export const fetchTeacherAvailability = (userId) => {
 //   return (dispatch) => {
 //     axios.get(`/api/requests/client/${userId}`)
