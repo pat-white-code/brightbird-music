@@ -7,7 +7,7 @@ const state = {
   },
   requests: [],
   requestIsLoaded: false,
-  // teacherAvailability: []
+  teacherSchedules: []
 }
 
 // const data = [

@@ -38,6 +38,28 @@ export const fetchClientRequests = (userId) => {
       })
   }
 }
+export const promiseClientRequests = async (userId) => {
+  return (dispatch) => {
+    return new Promise ((resolve, reject) => {
+      dispatch({ type: 'SET_LOADING', loading: true});
+      axios.get(`/api/requests/client/${userId}`)
+        .then(res => {
+          console.log(res);
+          let requests = res.data
+          dispatch({type: 'FETCH_SUCCESSFUL',payload:requests});
+          dispatch({type: 'SET_LOADING', loading: false});
+          resolve(requests);
+        }).catch(err => {console.log('ERR',err); reject(err)})
+    })
+  }
+}
+
+export const getSchedulesByRequest = (request) => {
+  return (dispatch) => {
+    axios.get(`/api/schedules/request/${request.id}?instrumentId=${request.instrument_id}&zipCode=${request.zip_code}&studentAge=${request.student_age}`)
+      .then(schedules => dispatch({type: 'FETCHES_TEACHER_SCHEDULES', payload:schedules}))
+  }
+}
 
 export const setRequests = (requests) => {
   return {type: 'SET_REQUESTS', payload:requests}

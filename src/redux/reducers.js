@@ -27,26 +27,16 @@ const requests = (state =[], action) => {
       ) : (
         request
       ))
-    // case 'FETCHES_TEACHER_SCHEDULE':
-    //   return state.map(request => request.id === action.payload.requestId ? (
-    //     request.availableTeachers.map(teacher=> teacher.id === payload.teacherId ? (
-    //       teacher.schedule = payload.schedule
-    //     ) : (
-    //       teacher
-    //     ))
-    //   ) : (
-    //     request
-    //   ))
   }
 }
 
-// const teacherAvailability = (state = [], action) => {
-//   switch(action.type) {
-//     case 'FETCHES_TEACHER_AVAILABILITY':
-//       return [...state, action.payload];
-//     default: return state
-//   }
-// }
+const teacherSchedules = (state = [], action) => {
+  switch(action.type) {
+    case 'FETCHES_TEACHER_SCHEDULES':
+      return action.payload;
+    default: return state
+  }
+}
 
 const requestIsLoaded = (state = false, action) => {
   let newState = {...state}
@@ -59,6 +49,6 @@ const requestIsLoaded = (state = false, action) => {
 
 export default combineReducers({
   user, requests, 
-  // teacherAvailability, 
+  teacherSchedules, 
   requestIsLoaded
 })

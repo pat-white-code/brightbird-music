@@ -3,11 +3,13 @@ const getLessonsByScheduleId = require('./modules/schedules/getLessonsBySchedule
 const postSchedules = require('./modules/schedules/postSchedules');
 const postRecurringSchedule = require('./modules/schedules/postRecurringSchedule');
 const getRecurringSchedules = require('./modules/schedules/getRecurringSchedules');
+const getSchedulesByRequest = require('./modules/schedules/getSchedulesByRequest');
 
 module.exports = {
   getTeacherSchedule,
   getLessonsByScheduleId,
   postSchedules,
   postRecurringSchedule,
-  getRecurringSchedules
+  getRecurringSchedules,
+  getSchedulesByRequest
 }
