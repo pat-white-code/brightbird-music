@@ -12,7 +12,7 @@ const fetchDriveTimes = (req, res, next) => {
       if(response.data[0]){
         let driveTimeSeconds = response.data[0].drive_time_seconds;
         lesson.driveTime = Math.ceil(driveTimeSeconds / 60);
-      }
+      } else { lesson.driveTime = 0 }
       // console.log('RESPONSE', response.data);
       return lesson
     }))

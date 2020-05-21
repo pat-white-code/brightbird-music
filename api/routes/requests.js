@@ -5,7 +5,11 @@ const controller = require('../controllers/requests');
 router.get('/client/:clientId', controller.getClientRequests);
 router.get('/:requestId', controller.getRequestInfo);
 
-router.post('/', controller.postRequest, controller.getScheduleDataByRequest, controller.fetchDriveTimes);
+router.post('/', 
+  controller.postRequest, 
+  controller.getScheduleDataByRequest, 
+  controller.filterBookendedLessons, 
+  controller.fetchDriveTimes);
 
 
 

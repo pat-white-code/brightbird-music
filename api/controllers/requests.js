@@ -4,6 +4,7 @@ const mailRequest = require('./modules/requests/mailRequest');
 const getRequestInfo = require('./modules/requests/getRequestInfo');
 const getScheduleDataByRequest = require('./modules/requests/getScheduleDataByRequest');
 const fetchDriveTimes = require('./modules/requests/fetchDriveTimes');
+const filterBookendedLessons = require('./modules/requests/filterBookendedLessons');
 
 module.exports = {
   postRequest, 
@@ -11,5 +12,6 @@ module.exports = {
   mailRequest,
   getRequestInfo,
   getScheduleDataByRequest,
-  fetchDriveTimes
+  fetchDriveTimes,
+  filterBookendedLessons
 };
