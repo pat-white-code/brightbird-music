@@ -14,11 +14,11 @@ const lessonsRouter = require('./routes/lessons');
 const usersRouter = require('./routes/users');
 const addressesRouter = require('./routes/addresses');
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 

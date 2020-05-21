@@ -16,8 +16,8 @@ const postRequest = (req, res, next) => {
   pool.query(sql, (err, results)=> {
     if (err){return res.status(500).send(err)}
     req.body.requestId = results.insertId;
-    // next();
-    return res.status(201).json({message:'request created', id:results.insertId});
+    next();
+    // return res.status(201).json({message:'request created', id:results.insertId});
   })
 }
 

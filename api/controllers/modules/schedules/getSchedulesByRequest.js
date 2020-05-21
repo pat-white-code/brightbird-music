@@ -45,7 +45,8 @@ const getSchedulesByRequest = (req, res) => {
   -- student age query goes here...
       AND teacher_instruments.min_age <= ?
 
-  ORDER BY teacher_id, lesson_time_stamp;
+  ORDER BY teacher_id, lesson_time_stamp
+  LIMIT 100;
   `
   let replacements = [req.params.requestId, instrumentId, zipCode, studentAge];
 
