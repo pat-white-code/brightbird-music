@@ -18,7 +18,7 @@ const calculateTeacherAvailabilities = (req, res) => {
     availabilityAfter.startTime = lesson.endMoment.clone().add(lesson.driveTime, 'minutes');
     // if availability after this lesson + driveTime + requestedTime > next Lesson start time, return it to the new array;
     if(availabilityAfter.startTime.clone().add(lesson.next_lesson_drive + requestedTime, 'minutes').valueOf() - lesson.next_lesson_startMoment.valueOf() < 0) {
-      availabilityAfter.startTime = availabilityAfter.startTime.format('YYYY-MM-DDTHH:mm:ss Z')
+      availabilityAfter.startTime = availabilityAfter.startTime.format('YYYY-MM-DD HH:mm:ss')
       availabilitiesAfter.push(availabilityAfter)
     }
   })
