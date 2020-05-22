@@ -24,7 +24,7 @@ const filterBookendedLessons = (req, res, next) => {
       prevLesson = {}
       prevLesson.endMoment = moment(lesson.day_end_time, 'YYYY-MM-DDTHH:mm:ss Z');
     }
-    lesson.prev_lesson_endMoment = prevLesson.startMoment;
+    lesson.prev_lesson_endMoment = prevLesson.endMoment;
 
     // IF there is no previous lesson, or if the previous lesson has a different date
     if(!nextLesson || (nextLesson.date !== lesson.date) || (nextLesson.teacher_id !== lesson.teacher_id)){

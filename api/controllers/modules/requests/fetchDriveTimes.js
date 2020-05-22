@@ -21,7 +21,21 @@ const fetchDriveTimes = (req, res, next) => {
 
   updateLessons()
     .then(updatedLessons => {
-      req.body.lessonData = updatedLessons
+      let lessonsWithNeighboringDrives = updatedLessons.map((lesson, index, arr) => {
+        // if there is no previous lesson that day, prev_lesson_drive = 0
+        // if there is no next lesson that day, next_lesson_drive = 0
+        // otherwise, lesson.prev_lesson_drive = prevLesson.driveTime
+        let prevLesson = arr[index - 1];
+        let nextLesson = arr[index + 1];
+        if(!prevLesson || (prevLesson.date !== lesson.date) || prevLesson.teacher_id !== lesson.teacher_id){
+          lesson.prev_lesson_drive = 0;
+        } else {lesson.prev_lesson_drive = prevLesson.driveTime }
+        if(!nextLesson || (nextLesson.date !== lesson.date) || nextLesson.teacher_id !== lesson.teacher_id){
+          lesson.next_lesson_drive = 0;
+        } else {lesson.next_lesson_drive = nextLesson.driveTime };
+        return lesson;
+      })
+      req.body.lessonData = lessonsWithNeighboringDrives;
       console.log('REQUEST BODY', req.body)
       next();
       res.status(200).send("DriveTimes Updated")})
