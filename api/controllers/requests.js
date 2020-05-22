@@ -5,6 +5,7 @@ const getRequestInfo = require('./modules/requests/getRequestInfo');
 const getScheduleDataByRequest = require('./modules/requests/getScheduleDataByRequest');
 const fetchDriveTimes = require('./modules/requests/fetchDriveTimes');
 const filterBookendedLessons = require('./modules/requests/filterBookendedLessons');
+const calculateTeacherAvailabilities = require('./modules/requests/calculateTeacherAvailabilities');
 
 module.exports = {
   postRequest, 
@@ -13,5 +14,6 @@ module.exports = {
   getRequestInfo,
   getScheduleDataByRequest,
   fetchDriveTimes,
-  filterBookendedLessons
+  filterBookendedLessons,
+  calculateTeacherAvailabilities
 };

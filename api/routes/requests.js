@@ -9,7 +9,9 @@ router.post('/',
   controller.postRequest, 
   controller.getScheduleDataByRequest, 
   controller.filterBookendedLessons, 
-  controller.fetchDriveTimes);
+  controller.fetchDriveTimes,
+  controller.calculateTeacherAvailabilities
+  );
 
 
 

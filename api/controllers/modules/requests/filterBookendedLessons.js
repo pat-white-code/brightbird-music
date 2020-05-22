@@ -20,14 +20,14 @@ const filterBookendedLessons = (req, res, next) => {
     lesson.openEnded = true;
 
     // IF there is no previous lesson, or if the previous lesson has a different date
-    if(!prevLesson || (prevLesson.date !== lesson.date) || prevLesson.teacher_id !== lesson.teacher_id){
+    if(!prevLesson || (prevLesson.date_ !== lesson.date_) || prevLesson.teacher_id !== lesson.teacher_id){
       prevLesson = {}
-      prevLesson.endMoment = moment(lesson.day_end_time, 'YYYY-MM-DDTHH:mm:ss Z');
+      prevLesson.endMoment = moment(lesson.day_start_time, 'YYYY-MM-DDTHH:mm:ss Z');
     }
     lesson.prev_lesson_endMoment = prevLesson.endMoment;
 
     // IF there is no previous lesson, or if the previous lesson has a different date
-    if(!nextLesson || (nextLesson.date !== lesson.date) || (nextLesson.teacher_id !== lesson.teacher_id)){
+    if(!nextLesson || (nextLesson.date_ !== lesson.date_) || (nextLesson.teacher_id !== lesson.teacher_id)){
       nextLesson = {}
       nextLesson.startMoment = moment(lesson.day_end_time, 'YYYY-MM-DDTHH:mm:ss Z')
     }
