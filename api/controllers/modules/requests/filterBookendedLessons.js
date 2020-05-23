@@ -41,7 +41,9 @@ const filterBookendedLessons = (req, res, next) => {
   lessonData = lessonData.filter(lesson => lesson.openEnded)
 
   req.body.lessonData = lessonData;
-  next()
+  // console.log('REQ BODY LESSONDATA:', req.body.lessonData)
+  next();
+  // res.send('bookended lessons filtered');
 }
 
 module.exports = filterBookendedLessons;

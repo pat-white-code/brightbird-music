@@ -30,7 +30,7 @@ const getSchedulesByRequest = (req, res) => {
     Join schedules
       ON schedules.teacher_id = teachers.id
     JOIN lessons
-      ON lessons.date_ = schedules.date_
+      ON lessons.schedule_id = schedules.id
     JOIN service_requests
       ON service_requests.id = ?
     JOIN students
