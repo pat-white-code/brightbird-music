@@ -30,25 +30,35 @@ const requests = (state =[], action) => {
   }
 }
 
-const teacherSchedules = (state = [], action) => {
-  switch(action.type) {
-    case 'FETCHES_TEACHER_SCHEDULES':
-      return action.payload;
-    default: return state
-  }
-}
+// const teacherSchedules = (state = [], action) => {
+//   switch(action.type) {
+//     case 'FETCHES_TEACHER_SCHEDULES':
+//       return action.payload;
+//     default: return state
+//   }
+// }
 
-const requestIsLoaded = (state = false, action) => {
-  let newState = {...state}
+// const requestIsLoaded = (state = false, action) => {
+//   let newState = {...state}
+//   switch(action.type) {
+//     case 'FETCH_SUCCESSFUL':
+//       return newState.requestIsLoaded = true
+//     default: return state;
+//   }
+// }
+
+const availabilities = (state = [], action) => {
   switch(action.type) {
-    case 'FETCH_SUCCESSFUL':
-      return newState.requestIsLoaded = true
+    case 'GETS_AVAILABILITIES':
+      return action.payload;
     default: return state;
   }
 }
 
 export default combineReducers({
-  user, requests, 
-  teacherSchedules, 
-  requestIsLoaded
+  user, 
+  requests, 
+  // teacherSchedules, 
+  // requestIsLoaded,
+  availabilities
 })

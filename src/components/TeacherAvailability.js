@@ -5,24 +5,9 @@ import React, { Component } from 'react';
 class TeacherAvailability extends Component {
 
   componentDidMount(){
-    this.props.fetchClientRequests(this.props.user.id);
-    // this.props.requests.forEach(request => this.props.fetchQualifiedTeachers(request))
-    // for each request, fetch qualified teacher
-    // .then(props.requests.forEach(request => fetchQualifiedTeachers(request)))
-    // for each qualified teacher, fetchSchedules
-    // .then(props.requests.teachers.forEach(teacher=> fetchTeacherSchedule))
-    // for each teacher schedule, fetch lessons that day
-    // .then(props.requests.teachers.schedules.forEach(day => fetchLessons))
-    // Calculate lesson availability.
+    // this.props.fetchClientRequests(this.props.user.id);
+    this.props.getAvailabilitiesByUser(this.props.user.id);
   }
-
-  // componentDidUpdate(prevProps){
-  //   if(this.props.requestIsLoaded !== prevProps.requestIsLoaded) {
-  //     if(this.props.requestIsLoaded) {
-  //       this.props.requests.forEach(request => this.props.fetchQualifiedTeachers(request));
-  //     }
-  //   }
-  // }
 
   fetchQualifiedTeachers = () => {
     console.log('REQUESTS:',this.props.requests)
@@ -34,7 +19,8 @@ class TeacherAvailability extends Component {
   render(){
     return(
       <>
-        <h1>Teacher Availability</h1>
+        <h1>Teacher Availabilities</h1>
+
         <button onClick={this.fetchQualifiedTeachers}></button>
         {this.props.requests.map(request => (
           <>

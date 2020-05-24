@@ -24,7 +24,8 @@ export const userLogin = (user) => {
           // document.cookie = "loggedIn=true;max-age=60*1000"
           dispatch(isLoggedIn())
           dispatch(setUserId(userId))
-          dispatch(fetchClientRequests(userId))})
+          dispatch(getAvailabilitiesByUser(userId))
+        })
   }
 }
 
@@ -38,6 +39,16 @@ export const fetchClientRequests = (userId) => {
       })
   }
 }
+
+export const getAvailabilitiesByUser = (userId) => {
+  return async (dispatch) => {
+    let response = await axios.get(`/api/availabilities/client/${userId}`)
+    console.log(response);
+    let availabilities = response.data;
+    dispatch({type:'GETS_AVAILABILITIES', payload:availabilities})
+  }
+}
+
 export const promiseClientRequests = async (userId) => {
   return (dispatch) => {
     return new Promise ((resolve, reject) => {

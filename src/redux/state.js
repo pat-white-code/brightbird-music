@@ -6,8 +6,8 @@ const state = {
     addressId: null
   },
   requests: [],
-  requestIsLoaded: false,
-  teacherSchedules: []
+  // requestIsLoaded: false,
+  availabilities: []
 }
 
 // const data = [
