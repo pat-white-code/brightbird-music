@@ -13,6 +13,7 @@ const requestsRouter = require('./routes/requests');
 const lessonsRouter = require('./routes/lessons');
 const usersRouter = require('./routes/users');
 const addressesRouter = require('./routes/addresses');
+const availabilitiesRouter = require('./routes/availabilities');
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'build')));
@@ -35,6 +36,7 @@ app.use('/api/requests', requestsRouter);
 app.use('/api/lessons', lessonsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/addresses', addressesRouter);
+app.use('/api/availabilities', availabilitiesRouter);
 
 
 app.listen(port, ()=> {
