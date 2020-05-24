@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AvailabilitiesTable from '../containers/AvailabilitiesTable';
 // import moment from 'moment';
 
 
@@ -20,7 +21,7 @@ class TeacherAvailability extends Component {
     return(
       <>
         <h1>Teacher Availabilities</h1>
-
+        <AvailabilitiesTable />
         <button onClick={this.fetchQualifiedTeachers}></button>
         {this.props.requests.map(request => (
           <>
