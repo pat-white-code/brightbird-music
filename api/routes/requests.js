@@ -15,6 +15,12 @@ router.post('/',
   availabilitiesController.createTeacherAvailabilities
   );
 
+  router.post('/test', 
+    controller.postRequest,
+    controller.getTeachersForRequest,
+    controller.getSchedulesByTeacher
+  );
+
 
 
 module.exports = router;
