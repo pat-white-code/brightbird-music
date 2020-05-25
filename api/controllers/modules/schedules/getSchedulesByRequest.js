@@ -19,7 +19,7 @@ const getSchedulesByRequest = (req, res) => {
       lessons.day_time AS lesson_time_stamp,
       service_requests.lesson_duration,
       addresses.address,
-      (select addresses.address from service_requests JOIN addresses ON addresses.id = service_requests.address_id WHERE service_requests.id = 1) AS request_address
+      (select addresses.address from service_requests JOIN addresses ON addresses.id = service_requests.address_id WHERE service_requests.id = ?) AS request_address
     FROM teachers
     JOIN teacher_instruments
       ON teachers.id = teacher_instruments.teacher_id
@@ -48,7 +48,7 @@ const getSchedulesByRequest = (req, res) => {
   ORDER BY teacher_id, lesson_time_stamp
   LIMIT 100;
   `
-  let replacements = [req.params.requestId, instrumentId, zipCode, studentAge];
+  let replacements = [req.params.requestId, req.params.requestId, instrumentId, zipCode, studentAge];
 
   sql = mysql.format(sql, replacements)
 

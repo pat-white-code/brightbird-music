@@ -56,11 +56,12 @@ const StudentForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let studentAge = Math.abs(moment(dob).diff(moment(), 'years'));
+    let addressId = props.user.addressId;
     console.log( firstName, lastName, dob, instrumentId, experience, lessonDuration, studentAge );
-    axios.post('/api/students', {firstName, lastName, dob, addressId: props.user.addressId, clientId:props.user.id})
+    axios.post('/api/students', {firstName, lastName, dob, addressId, clientId:props.user.id})
       .then(res => {
         console.log(res)
-        axios.post('/api/requests', {studentId: res.data.id, instrumentId, lessonDuration, studentAge})
+        axios.post('/api/requests', {studentId: res.data.id, instrumentId, lessonDuration, studentAge, addressId})
         .then(res => console.log(res))
         .then(()=> history.push('/availability'))
       })
