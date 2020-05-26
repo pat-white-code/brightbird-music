@@ -36,6 +36,7 @@ const getAvailabilities = async (req, res) => {
       request.availableTeachers = response.data;
       let teachersWithAvailabilities = await Promise.all(response.data.map(teacher => {
         // PUT NEW ROUTE HERE
+        // console.log(request.id)
         teacher.availabilities = [1, 2, 3]
         return teacher;
       }))
