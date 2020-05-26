@@ -34,10 +34,10 @@ const getAvailabilities = async (req, res) => {
       console.log('GET TEACHERS RESPONSE: ', response.data)
       // console.log(response.data)
       request.availableTeachers = response.data;
-      let teachersWithAvailabilities = await Promise.all(response.data.map(teacher => {
-        // PUT NEW ROUTE HERE
+      let teachersWithAvailabilities = await Promise.all(response.data.map(async teacher => {
+        let response = await axios.get(`http://127.0.0.1:3000/api/availabilities/request/${request.id}/teacher/${teacher.teacher_id}`);
         // console.log(request.id)
-        teacher.availabilities = [1, 2, 3]
+        teacher.availabilities = response.data
         return teacher;
       }))
       request.availableTeachers = teachersWithAvailabilities
