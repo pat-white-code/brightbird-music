@@ -5,6 +5,7 @@ const availabilitiesController = require('../controllers/availabilities');
 
 router.get('/client/:clientId', controller.getClientRequests);
 router.get('/:requestId', controller.getRequestInfo);
+router.get('/teachers/:requestId', controller.getTeachersByRequest);
 
 router.post('/', 
   controller.postRequest, 
