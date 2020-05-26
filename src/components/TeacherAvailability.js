@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AvailabilitiesTable from '../containers/AvailabilitiesTable';
+import { Container } from '@material-ui/core';
+import TeacherCard from './TeacherCard';
 // import { getRequestsWithAvail } from '../redux/actions';
 // import moment from 'moment';
 
@@ -12,16 +14,16 @@ class TeacherAvailability extends Component {
     this.props.getRequestsWithAvail(this.props.user.id);
   }
 
-  fetchQualifiedTeachers = () => {
-    console.log('REQUESTS:',this.props.requests)
-    this.props.requests.forEach(request => {
-      console.log(request); 
-      this.props.getSchedulesByRequest(request)})
-  }
+  // fetchQualifiedTeachers = () => {
+  //   console.log('REQUESTS:',this.props.requests)
+  //   this.props.requests.forEach(request => {
+  //     console.log(request); 
+  //     this.props.getSchedulesByRequest(request)})
+  // }
 
   render(){
     return(
-      <>
+      <Container maxWidth="lg">
         <h1>Teacher Availabilities</h1>
         <AvailabilitiesTable />
         <button onClick={this.fetchQualifiedTeachers}></button>
@@ -30,13 +32,13 @@ class TeacherAvailability extends Component {
             <h1>
               {`Teachers Available for ${request.first_name}`}
             </h1>
-            <ul>
-              <li>{request.instrument_name}</li>
-              <li>{request.address}</li>
-            </ul>
+            <h4>{`${request.lesson_duration}-minute ${request.instrument_name}`}</h4>
+            {request.availableTeachers.map(teacher => (
+              <TeacherCard teacher={teacher} />
+            ))}
           </>
         ))}
-      </>
+      </Container>
     )
   }
 }
