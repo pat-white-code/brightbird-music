@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AvailabilitiesTable from '../containers/AvailabilitiesTable';
+// import { getRequestsWithAvail } from '../redux/actions';
 // import moment from 'moment';
 
 
@@ -8,6 +9,7 @@ class TeacherAvailability extends Component {
   componentDidMount(){
     // this.props.fetchClientRequests(this.props.user.id);
     this.props.getAvailabilitiesByUser(this.props.user.id);
+    this.props.getRequestsWithAvail(this.props.user.id);
   }
 
   fetchQualifiedTeachers = () => {

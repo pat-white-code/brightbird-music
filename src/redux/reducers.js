@@ -17,16 +17,9 @@ const user = (state = {}, action) => {
 
 const requests = (state =[], action) => {
   switch(action.type) {
-    case 'FETCH_SUCCESSFUL':
+    case 'GETS_REQUESTS_WITH_AVAIL':
       return action.payload;
     default: return state;
-    case 'FETCH_QUALIFIED_TEACHERS':
-      // payload: {requestId, teachers:[teachers]}
-      return state.map(request => request.id === action.payload.requestId ? (
-        {...request, availableTeachers: action.payload.teachers}
-      ) : (
-        request
-      ))
   }
 }
 

@@ -25,6 +25,7 @@ export const userLogin = (user) => {
           dispatch(isLoggedIn())
           dispatch(setUserId(userId))
           dispatch(getAvailabilitiesByUser(userId))
+          dispatch(getRequestsWithAvail(userId));
         })
   }
 }
@@ -41,11 +42,20 @@ export const fetchClientRequests = (userId) => {
 }
 
 export const getAvailabilitiesByUser = (userId) => {
-  return async (dispatch) => {
+  return async dispatch => {
     let response = await axios.get(`/api/availabilities/client/${userId}`)
     console.log(response);
     let availabilities = response.data;
     dispatch({type:'GETS_AVAILABILITIES', payload:availabilities})
+  }
+}
+
+export const getRequestsWithAvail = (userId) => {
+  return async dispatch => {
+    let response = await axios.get(`/api/availabilities/${userId}`)
+    console.log('GET AVAILABILITIES: ', response.data);
+    let requestsWithAvail = response.data;
+    dispatch({type:'GETS_REQUESTS_WITH_AVAIL', payload:requestsWithAvail})
   }
 }
 

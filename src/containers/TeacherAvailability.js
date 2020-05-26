@@ -1,5 +1,5 @@
 import TeacherAvailability from '../components/TeacherAvailability';
-import { fetchClientRequests, fetchQualifiedTeachers, setRequests, promiseClientRequests, getSchedulesByRequest, getAvailabilitiesByUser } from '../redux/actions';
+import { fetchClientRequests, fetchQualifiedTeachers, setRequests, promiseClientRequests, getSchedulesByRequest, getAvailabilitiesByUser, getRequestsWithAvail } from '../redux/actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -17,7 +17,8 @@ const mapDispatchTopProps = dispatch => {
     setRequests: (requests) => dispatch(setRequests(requests)),
     promiseClientRequests: (userId) => dispatch(promiseClientRequests),
     getSchedulesByRequest: (request) => dispatch(getSchedulesByRequest(request)),
-    getAvailabilitiesByUser: (userId) => dispatch(getAvailabilitiesByUser(userId))
+    getAvailabilitiesByUser: (userId) => dispatch(getAvailabilitiesByUser(userId)),
+    getRequestsWithAvail: (userId) => dispatch(getRequestsWithAvail(userId))
   }
 }
 
