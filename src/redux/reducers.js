@@ -4,13 +4,15 @@ import { combineReducers } from 'redux';
 const user = (state = {}, action) => {
   switch(action.type) {
     case 'USER_LOGS_IN':
-      return {...state, isLoggedIn: true}
+      return {...state, isLoggedIn: true};
     case 'INITIAL_LOGIN':
-      return{...state, isLoggedIn: true, id:action.payload}
+      return{...state, isLoggedIn: true, id:action.payload};
     case 'SETS_USER_ID':
-      return {...state, id:action.payload}
+      return {...state, id:action.payload};
     case 'INITIAL_ADDRESS':
-      return{...state, addressId: action.payload}
+      return{...state, addressId: action.payload};
+    case 'GETS_USER_STUDENTS':
+      return {...state, students: action.payload};
     default: return state;
   }
 }

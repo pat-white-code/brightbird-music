@@ -22,10 +22,11 @@ export const userLogin = (user) => {
           console.log(json)
           let userId = json.data.id
           // document.cookie = "loggedIn=true;max-age=60*1000"
-          dispatch(isLoggedIn())
-          dispatch(setUserId(userId))
-          dispatch(getAvailabilitiesByUser(userId))
+          dispatch(isLoggedIn());
+          dispatch(setUserId(userId));
+          dispatch(getAvailabilitiesByUser(userId));
           dispatch(getRequestsWithAvail(userId));
+          dispatch(getStudentsByUser(userId));
         })
   }
 }
@@ -56,6 +57,15 @@ export const getRequestsWithAvail = (userId) => {
     console.log('GET AVAILABILITIES: ', response.data);
     let requestsWithAvail = response.data;
     dispatch({type:'GETS_REQUESTS_WITH_AVAIL', payload:requestsWithAvail})
+  }
+}
+
+export const getStudentsByUser = userId => {
+  return async dispatch => {
+    let response = await axios.get(`/api/students/client/${userId}`)
+    let students = response.data;
+    console.log('GET STUDENTS BY USER', response);
+    dispatch({type:'GETS_USER_STUDENTS', payload:students});
   }
 }
 

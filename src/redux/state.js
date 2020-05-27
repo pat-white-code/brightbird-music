@@ -3,7 +3,8 @@ const state = {
     email: null,
     id: null,
     isLoggedIn: false,
-    addressId: null
+    addressId: null,
+    students: []
   },
   requests: [],
   // requestIsLoaded: false,
