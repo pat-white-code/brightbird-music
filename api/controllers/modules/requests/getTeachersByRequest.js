@@ -8,7 +8,9 @@ const getTeachersByRequest = (req, res) => {
     SELECT DISTINCT
       teacher_id,
         first_name,
-        last_name
+        last_name,
+        img_url,
+        bio
     FROM teacher_availabilities
     JOIN teachers
       ON teachers.id = teacher_availabilities.teacher_id

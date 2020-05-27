@@ -1,56 +1,58 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Card, CardContent, CardMedia } from '@material-ui/core';
+// import TeacherAvailsHeader from './TeacherAvailsHeader';
+// import TeacherAvailsBody from './TeacherAvailsBody';
 import TeacherAvailsTable from './TeacherAvailsTable';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    border: '1px red solid',
-    width: 750,
-    height: 500,
+    // border: '1px red solid',
+    width: '100%',
+    maxHeight: 500,
     display: 'flex',
-    flexDirection: 'column',
     margin: 20
   },
-  teacher: {
-    height: '50%',
-    border: '1px blue solid',
-    width: '100%',
-    display: 'flex',
-  },
-  avails: {
-    height: '50%',
-    border: '1px green solid',
-    width: '100%'
-  },
   teacherMedia: {
-    width: '50%',
+    width: '35%',
     height:'100%',
-    overflow: 'hidden'
+    // overflow: 'hidden'
   },
   teacherBio: {
-    width: '50%',
-    height: '100%',
+    width: '65%'
+  },
+  teacherImg: {
+    width: '100%'
+  },
+  availsTable: {
+    width: '100%'
+  },
+  availsContainer: {
+    height: 300,
+    overflow: 'scroll'
   }
 }));
 
 const TeacherCard = (props) => {
   const classes = useStyles()
   return(
-    <div className={classes.root}>
-      <div className={classes.teacher}>
-        <div className={classes.teacherMedia}>
-          <img alt='teacher' src='/src/img/jim-foster-headshot.jpg' />
-        </div>
-        <div className = {classes.teacherBio}>
+    <Card raised className={classes.root}>
+      <div className={classes.teacherMedia}>
+        <CardMedia>
+          <img className={classes.teacherImg}alt='teacher' src={props.teacher.img_url} />
+        </CardMedia>
+      </div>
+      <div className = {classes.teacherBio}>
+        <CardContent>
           <h1>{`${props.teacher.first_name} ${props.teacher.last_name}`}</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae dignissimos omnis vel beatae unde! Obcaecati cumque velit molestias, deleniti aut officia eos eveniet, assumenda aliquid placeat fuga similique hic voluptatem.</p>
-        </div>
+          <p>{props.teacher.bio}</p>
+          <div className={classes.availsContainer}>
+            <TeacherAvailsTable className={classes.availsTable} avails={props.teacher.availabilities} />
+          </div>
+        </CardContent>
       </div>
-      <div className={classes.avail}>
-        <TeacherAvailsTable avails={props.teacher.availabilities} />
-      </div>
-    </div>
+    </Card>
   )
 }
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AvailabilitiesTable from '../containers/AvailabilitiesTable';
 import { Container } from '@material-ui/core';
 import TeacherCard from './TeacherCard';
 // import { getRequestsWithAvail } from '../redux/actions';
@@ -23,12 +22,9 @@ class TeacherAvailability extends Component {
 
   render(){
     return(
-      <Container maxWidth="lg">
-        <h1>Teacher Availabilities</h1>
-        <AvailabilitiesTable />
-        <button onClick={this.fetchQualifiedTeachers}></button>
+      <Container maxWidth="md">
         {this.props.requests.map(request => (
-          <>
+          <>  
             <h1>
               {`Teachers Available for ${request.first_name}`}
             </h1>
