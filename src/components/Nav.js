@@ -40,6 +40,7 @@ export default function ButtonAppBar() {
             }}>Test Server</Button>
           <Link to="/login"><Button color="inherit" className={classes.menuButton}>Login</Button></Link>
           <Link to="/availability"><Button color="inherit" className={classes.menuButton}>Availability</Button></Link>
+          <Link to="/requests"><Button color="inherit" className={classes.menuButton}>View Requests</Button></Link>
           <Link to="/signup/parent"><Button color="secondary" variant='contained'>Sign up Free</Button></Link>
         </Toolbar>
       </AppBar>

@@ -6,6 +6,7 @@ import AddressSignup from './components/AddressSignup';
 import StudentSignup from './components/StudentSignup';
 import TeacherAvailability from './containers/TeacherAvailability';
 import Login from './containers/Login';
+import ViewRequests from './containers/ViewRequests';
 
 
 const Router = () => {
@@ -16,6 +17,7 @@ const Router = () => {
       <Route path='/signup/address' component={AddressSignup} />
       <Route path='/signup/student' component={StudentSignup} />
       <Route path='/availability' component={TeacherAvailability} />
+      <Route path='/requests' component={ViewRequests} />
       <Route path='/login' component={Login} />
     </Switch>
   )
