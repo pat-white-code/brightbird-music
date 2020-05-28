@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // border: '1px red solid',
     width: '100%',
-    maxHeight: 300,
+    maxHeight: 400,
     display: 'flex',
     margin: 20
   },
@@ -19,8 +19,7 @@ const useStyles = makeStyles((theme) => ({
     // overflow: 'hidden'
   },
   teacherBio: {
-    width: '65%',
-    overflow: 'scroll'
+    width: '65%'
   },
   teacherImg: {
     width: '100%'
@@ -28,11 +27,14 @@ const useStyles = makeStyles((theme) => ({
   availsTable: {
     width: '100%',
     overflow:'scroll'
+  },
+  bioContainer: {
+    height: '50%'
+  },
+  availsContainer: {
+    height: '50%',
+    overflow: 'scroll'
   }
-  // availsContainer: {
-  //   height: 300,
-  //   overflow: 'scroll'
-  // }
 }));
 
 const TeacherCard = (props) => {
@@ -48,8 +50,10 @@ const TeacherCard = (props) => {
           {/* <img className={classes.teacherImg}alt='teacher' src={props.teacher.img_url} /> */}
       {/* <div className = {classes.teacherBio}> */}
       <CardContent className={classes.teacherBio}>
-        <h1>{`${props.teacher.first_name} ${props.teacher.last_name}`}</h1>
-        <p>{props.teacher.bio}</p>
+        <div className={classes.bioContainer}>
+          <h1>{`${props.teacher.first_name} ${props.teacher.last_name}`}</h1>
+          <p>{props.teacher.bio}</p>
+        </div>
         <div className={classes.availsContainer}>
           <TeacherAvailsTable className={classes.availsTable} avails={props.teacher.availabilities} />
         </div>
