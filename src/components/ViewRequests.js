@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import RequestCard from './RequestCard';
 
 const ViewRequests = (props) => {
@@ -14,12 +14,7 @@ const ViewRequests = (props) => {
         <>
           <h1>{`${student.first_name} ${student.last_name}`}</h1>
           {props.requests.filter(request => request.student_id === student.id).map(request => (
-            <>
-              <RequestCard />
-              <Card>
-                {`${request.lesson_duration}${request.instrument_name}`}
-              </Card>
-            </>
+            <RequestCard request={request} />
         ))}
         </>
 

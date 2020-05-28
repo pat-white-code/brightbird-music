@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   },
   teacherMedia: {
     width: '35%',
-    // overflow: 'hidden'
   },
   teacherBio: {
     width: '65%'
@@ -48,7 +47,6 @@ const TeacherCard = (props) => {
         title="Teacher headshot"
         image={props.teacher.img_url} />
           {/* <img className={classes.teacherImg}alt='teacher' src={props.teacher.img_url} /> */}
-      {/* <div className = {classes.teacherBio}> */}
       <CardContent className={classes.teacherBio}>
         <div className={classes.bioContainer}>
           <h1>{`${props.teacher.first_name} ${props.teacher.last_name}`}</h1>
@@ -58,7 +56,6 @@ const TeacherCard = (props) => {
           <TeacherAvailsTable className={classes.availsTable} avails={props.teacher.availabilities} />
         </div>
       </CardContent>
-      {/* </div> */}
     </Card>
   )
 }
