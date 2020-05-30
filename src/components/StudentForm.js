@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    padding: 50
+  }
 }));
 
 const StudentForm = (props) => {
