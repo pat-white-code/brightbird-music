@@ -33,7 +33,7 @@ const ViewRequests = (props) => {
               <AddCircleIcon fontSize="large" />
             </IconButton>
             <FormModal>
-              <AddRequest/>
+              <AddRequest student={student}/>
             </FormModal>
           </>
         </>

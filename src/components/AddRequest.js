@@ -31,7 +31,7 @@ const AddRequest = (props) => {
   const [instrumentId, setInstrumentId] = useState(0);
   const [experience, setExperience] = useState(0);
   const [lessonDuration, setLessonDuration] = useState(30);
-  const [address, setAddress] = useState(props.user.addresses[0].id)
+  const [addressId, setAddressId] = useState(props.user.addresses[0].id)
 
 
   const handleInstrumentId = e => {
@@ -48,21 +48,21 @@ const AddRequest = (props) => {
     setLessonDuration(e.target.value)
   }
 
-  const handleAddress = e => {
-    console.log('ADDRESS', address);
-    setAddress(e.target.value)
+  const handleAddressId = e => {
+    console.log('ADDRESS', addressId);
+    setAddressId(e.target.value)
   }
 
-  // const handleSubmission = e => {
-  //   e.preventDefault();
-  //   axios.post('/api/requests', {
-  //     instrumentId, experience, addressId: props.requests[0].address_id
-  //   })
-  // }
+  const handleSubmission = e => {
+    e.preventDefault();
+    axios.post('/api/requests', {
+      instrumentId, addressId, experience, lessonDuration, studentId: props.student.id
+    })
+  }
 
   return (
     <Container maxWidth='md' className={classes.container}>
-      <Typography variant='h4' gutterBottom >Add Lesson Request</Typography>
+      <Typography variant='h4' gutterBottom >{`Add Lesson for ${props.student.first_name}`} </Typography>
       <form className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel id="instrument">Instrument</InputLabel>
@@ -117,8 +117,8 @@ const AddRequest = (props) => {
           <Select 
             labelId="address-select"
             id="address"
-            value={address}
-            onChange={handleAddress}>
+            value={addressId}
+            onChange={handleAddressId}>
             {props.user.addresses.map(address => (
               <MenuItem key={address.id} value={address.id}>{address.address}</MenuItem>
             ))}
