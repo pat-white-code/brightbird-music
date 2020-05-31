@@ -1,6 +1,7 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState } from 'react';
 import { Button, Typography, Container, FormControl, FormHelperText, InputLabel, Select, MenuItem, makeStyles } from '@material-ui/core';
 import axios from 'axios';
+import moment from 'moment';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,15 +56,17 @@ const AddRequest = (props) => {
 
   const handleSubmission = e => {
     e.preventDefault();
+    let studentAge = Math.abs(moment(props.student.dob).diff(moment(), 'years'));
     axios.post('/api/requests', {
-      instrumentId, addressId, experience, lessonDuration, studentId: props.student.id
+      instrumentId, addressId, experience, lessonDuration, studentId: props.student.id, studentAge
     })
+    props.handleClose()
   }
 
   return (
     <Container maxWidth='md' className={classes.container}>
       <Typography variant='h4' gutterBottom >{`Add Lesson for ${props.student.first_name}`} </Typography>
-      <form className={classes.root}>
+      <form className={classes.root} onSubmit={handleSubmission}>
         <FormControl className={classes.formControl}>
           <InputLabel id="instrument">Instrument</InputLabel>
           <Select

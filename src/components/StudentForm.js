@@ -67,7 +67,7 @@ const StudentForm = (props) => {
     axios.post('/api/students', {firstName, lastName, dob, addressId, clientId:props.user.id})
       .then(res => {
         console.log(res)
-        axios.post('/api/requests', {studentId: res.data.id, instrumentId, lessonDuration, studentAge, addressId})
+        axios.post('/api/requests', {studentId: res.data.id, instrumentId, lessonDuration, studentAge, addressId, experience})
         .then(res => console.log(res))
         .then(()=> history.push('/availability'))
       })

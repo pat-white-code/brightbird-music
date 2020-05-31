@@ -5,6 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddRequest from '../containers/AddRequest';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -51,7 +52,7 @@ export default function FormModal(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            {props.children}
+            <AddRequest student={props.student} handleClose={handleClose} />
           </div>
         </Fade>
       </Modal>
