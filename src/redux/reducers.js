@@ -13,6 +13,8 @@ const user = (state = {}, action) => {
       return{...state, addressId: action.payload};
     case 'GETS_USER_STUDENTS':
       return {...state, students: action.payload};
+    case 'GETS_USER_ADDRESSES':
+      return {...state, addresses: action.payload};
     default: return state;
   }
 }

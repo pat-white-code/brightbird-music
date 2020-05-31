@@ -31,6 +31,7 @@ const AddRequest = (props) => {
   const [instrumentId, setInstrumentId] = useState(0);
   const [experience, setExperience] = useState(0);
   const [lessonDuration, setLessonDuration] = useState(30);
+  const [address, setAddress] = useState(props.user.addresses[0].id)
 
 
   const handleInstrumentId = e => {
@@ -47,17 +48,17 @@ const AddRequest = (props) => {
     setLessonDuration(e.target.value)
   }
 
-  const handleSubmission = e => {
-    e.preventDefault();
-    axios.post('/api/requests', {
-      instrumentId, experience, addressId: props.requests[0].address_id
-    })
+  const handleAddress = e => {
+    console.log('ADDRESS', address);
+    setAddress(e.target.value)
   }
 
-  useEffect(()=>{
-    // fetch the user Addresses
-    axios.get(`/api/addressses/client/${props.user.id}`)
-  })
+  // const handleSubmission = e => {
+  //   e.preventDefault();
+  //   axios.post('/api/requests', {
+  //     instrumentId, experience, addressId: props.requests[0].address_id
+  //   })
+  // }
 
   return (
     <Container maxWidth='md' className={classes.container}>
@@ -111,6 +112,17 @@ const AddRequest = (props) => {
               <MenuItem value={60}>60-Min ($72) </MenuItem>
           </Select>
           <FormHelperText>Lessons providede Weekly</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <Select 
+            labelId="address-select"
+            id="address"
+            value={address}
+            onChange={handleAddress}>
+            {props.user.addresses.map(address => (
+              <MenuItem key={address.id} value={address.id}>{address.address}</MenuItem>
+            ))}
+          </Select>
         </FormControl>
         <Button color='primary' variant='contained' type='submit'>Add Request</Button>
         <Button>Cancel</Button>

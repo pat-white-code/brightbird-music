@@ -5,7 +5,7 @@ import RequestCard from './RequestCard';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import FormModal from './FormModal';
-import AddRequest from './AddRequest';
+import AddRequest from '../containers/AddRequest';
 
 const useStyles = makeStyles((theme) => ({
   margin: {

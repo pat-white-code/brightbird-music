@@ -27,6 +27,7 @@ export const userLogin = (user) => {
           dispatch(getAvailabilitiesByUser(userId));
           dispatch(getRequestsWithAvail(userId));
           dispatch(getStudentsByUser(userId));
+          dispatch(getAddressesByUser(userId));
         })
   }
 }
@@ -48,6 +49,14 @@ export const getAvailabilitiesByUser = (userId) => {
     console.log(response);
     let availabilities = response.data;
     dispatch({type:'GETS_AVAILABILITIES', payload:availabilities})
+  }
+}
+
+export const getAddressesByUser = userId => {
+  return async dispatch => {
+    let response = await axios.get(`/api/addresses/client/${userId}`)
+    let addresses = response.data;
+    dispatch({type:'GETS_USER_ADDRESSES', payload:addresses})
   }
 }
 
