@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import { Button, Container, FormControl, FormHelperText, InputLabel, Select, MenuItem, makeStyles } from '@material-ui/core';
+import React, {useState, useEffect } from 'react';
+import { Button, Typography, Container, FormControl, FormHelperText, InputLabel, Select, MenuItem, makeStyles } from '@material-ui/core';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AddRequest = () => {
+const AddRequest = (props) => {
   // instrument
   // lesson duration
   const classes = useStyles();
@@ -45,8 +46,22 @@ const AddRequest = () => {
     console.log('LESSON DURATION:', lessonDuration)
     setLessonDuration(e.target.value)
   }
+
+  const handleSubmission = e => {
+    e.preventDefault();
+    axios.post('/api/requests', {
+      instrumentId, experience, addressId: props.requests[0].address_id
+    })
+  }
+
+  useEffect(()=>{
+    // fetch the user Addresses
+    axios.get(`/api/addressses/client/${props.user.id}`)
+  })
+
   return (
     <Container maxWidth='md' className={classes.container}>
+      <Typography variant='h4' gutterBottom >Add Lesson Request</Typography>
       <form className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel id="instrument">Instrument</InputLabel>

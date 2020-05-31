@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import RequestCard from './RequestCard';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import AddRequestModal from './AddRequestModal';
+import FormModal from './FormModal';
+import AddRequest from './AddRequest';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -27,10 +28,14 @@ const ViewRequests = (props) => {
           {props.requests.filter(request => request.student_id === student.id).map(request => (
             <RequestCard request={request} />
         ))}
-          <IconButton aria-label="delete" className={classes.margin}>
-            <AddCircleIcon fontSize="large" />
-          </IconButton>
-          <AddRequestModal />
+          <>
+            <IconButton aria-label="delete" className={classes.margin}>
+              <AddCircleIcon fontSize="large" />
+            </IconButton>
+            <FormModal>
+              <AddRequest/>
+            </FormModal>
+          </>
         </>
 
       )

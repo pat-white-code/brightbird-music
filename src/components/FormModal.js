@@ -5,7 +5,6 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import AddRequest from './AddRequest';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddRequestModal() {
+export default function FormModal(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -52,9 +51,7 @@ export default function AddRequestModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
-            <AddRequest />
+            {props.children}
           </div>
         </Fade>
       </Modal>

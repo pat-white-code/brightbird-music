@@ -6,4 +6,8 @@ router.post('/:userId', controller.createAddress);
 
 router.get('/request/:requestId', controller.getAddressByRequest);
 
+router.get('/client/:clientId', controller.getAddressesByClient);
+
+
+
 module.exports = router;
