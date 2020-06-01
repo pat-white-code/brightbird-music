@@ -53,7 +53,7 @@ export default function RequestCard(props) {
         <IconButton>
           <EditIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={()=>{props.deleteRequest(props.request.id)}}>
           <DeleteIcon />
         </IconButton>
       </CardActions>

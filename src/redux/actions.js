@@ -120,6 +120,25 @@ export const addRequest = request => {
   }
 }
 
+// export const deleteRequest = requestId => {
+//   return dispatch => {
+//     axios.delete(`/api/requests/delete/${requestId}`)
+//       .then(response => response.data)
+//       .then(()=> dispatch({type:'DATABASE_UPDATED'}))
+//       .catch(err=> console.log(err))
+//   }
+// }
+
+export const deleteRequest = requestId => {
+  return (dispatch) => {
+    axios.delete(`/api/requests/delete/${requestId}`)
+      .then(res => {
+        console.log(res)
+        dispatch({type:'DATABASE_UPDATED'})
+      })
+  }
+}
+
 export const setRequests = (requests) => {
   return {type: 'SET_REQUESTS', payload:requests}
 }
