@@ -22,6 +22,8 @@ router.post('/test',
   controller.getSchedulesByTeacher
 );
 
+router.put('/edit/:requestId', controller.editRequest);
+
 router.delete('/delete/:requestId', controller.deleteRequest);
 
 
