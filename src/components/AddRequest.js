@@ -1,6 +1,5 @@
 import React, {useState } from 'react';
 import { Button, Typography, Container, FormControl, FormHelperText, InputLabel, Select, MenuItem, makeStyles } from '@material-ui/core';
-import axios from 'axios';
 import moment from 'moment';
 
 
@@ -54,10 +53,10 @@ const AddRequest = (props) => {
     setAddressId(e.target.value)
   }
 
-  const handleSubmission = e => {
+  const handleSubmit = e => {
     e.preventDefault();
     let studentAge = Math.abs(moment(props.student.dob).diff(moment(), 'years'));
-    axios.post('/api/requests', {
+    props.addRequest({
       instrumentId, addressId, experience, lessonDuration, studentId: props.student.id, studentAge
     })
     props.handleClose()
@@ -66,7 +65,7 @@ const AddRequest = (props) => {
   return (
     <Container maxWidth='md' className={classes.container}>
       <Typography variant='h4' gutterBottom >{`Add Lesson for ${props.student.first_name}`} </Typography>
-      <form className={classes.root} onSubmit={handleSubmission}>
+      <form className={classes.root} onSubmit={handleSubmit}>
         <FormControl className={classes.formControl}>
           <InputLabel id="instrument">Instrument</InputLabel>
           <Select

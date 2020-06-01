@@ -3,6 +3,9 @@ const mysql = require('mysql');
 
 const createTeacherAvailabilities = (req, res) => {
   let teacherAvailabilities = req.body.teacherAvailabilities;
+  if(!teacherAvailabilities[0]) {
+    res.status(200).send('No teachers Available');
+  }
   const {requestId, teacherId, startTime} = req.body.teacherAvailabilities[0];
   let sql = `
   INSERT INTO teacher_availabilities (

@@ -110,6 +110,16 @@ export const getSchedulesByRequest = (request) => {
   }
 }
 
+export const addRequest = request => {
+  return dispatch => {
+    axios.post('/api/requests', request)
+      .then(() => {
+        dispatch({type:'DATABASE_UPDATED'})
+      })
+      .catch(err => console.log(err))
+  }
+}
+
 export const setRequests = (requests) => {
   return {type: 'SET_REQUESTS', payload:requests}
 }

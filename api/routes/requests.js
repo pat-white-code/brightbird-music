@@ -16,11 +16,13 @@ router.post('/',
   availabilitiesController.createTeacherAvailabilities
   );
 
-  router.post('/test', 
-    controller.postRequest,
-    controller.getTeachersForRequest,
-    controller.getSchedulesByTeacher
-  );
+router.post('/test', 
+  controller.postRequest,
+  controller.getTeachersForRequest,
+  controller.getSchedulesByTeacher
+);
+
+router.delete('/delete/:requestId', controller.deleteRequest);
 
 
 

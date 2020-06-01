@@ -5,7 +5,8 @@ import { getRequestsWithAvail } from '../redux/actions';
 const mapStateToProps = state => {
   return {
     requests: state.requests,
-    user: state.user
+    user: state.user,
+    dbUpdatedAt: state.dbUpdatedAt
   }
 }
 
