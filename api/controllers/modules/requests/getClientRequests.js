@@ -13,7 +13,8 @@ const getClientRequests = (req, res) => {
       ON service_requests.instrument_id = instruments.id
   JOIN addresses
     ON addresses.id = students.address_id
-    WHERE clients.id = ?;
+  WHERE clients.id = ?
+    AND service_requests.is_active = 1;
   `
   let replacements = [req.params.clientId];
 
