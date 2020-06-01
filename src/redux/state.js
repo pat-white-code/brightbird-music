@@ -9,7 +9,8 @@ const state = {
   },
   requests: [],
   // requestIsLoaded: false,
-  availabilities: []
+  availabilities: [],
+  dbUpdatedAt: null
 }
 
 // const data = [

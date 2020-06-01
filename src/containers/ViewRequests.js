@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import ViewRequests from '../components/ViewRequests';
+import { getRequestsWithAvail } from '../redux/actions';
 
 const mapStateToProps = state => {
   return {
@@ -8,4 +9,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ViewRequests)
+const mapDispatchToProps = dispatch => {
+  return {
+    getRequestsWithAvail: (userId) => dispatch(getRequestsWithAvail(userId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewRequests)

@@ -27,6 +27,15 @@ const requests = (state =[], action) => {
   }
 }
 
+const dbUpdatedAt = (state = null, action) => {
+  const newState = {...state};
+  switch(action.type) {
+    case 'DATABASE_UPDATED':
+      return newState.dbUpdatedAt = new Date();
+    default: return state;
+  }
+}
+
 // const teacherSchedules = (state = [], action) => {
 //   switch(action.type) {
 //     case 'FETCHES_TEACHER_SCHEDULES':
@@ -57,5 +66,6 @@ export default combineReducers({
   requests, 
   // teacherSchedules, 
   // requestIsLoaded,
-  availabilities
+  availabilities,
+  dbUpdatedAt
 })
