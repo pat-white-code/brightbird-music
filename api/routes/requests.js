@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/requests');
-const availabilitiesController = require('../controllers/availabilities');
+const avails = require('../controllers/availabilities');
 
 router.get('/client/:clientId', controller.getClientRequests);
 router.get('/:requestId', controller.getRequestInfo);
@@ -13,7 +13,7 @@ router.post('/',
   controller.filterBookendedLessons, 
   controller.fetchDriveTimes,
   controller.calculateTeacherAvailabilities,
-  availabilitiesController.createTeacherAvailabilities
+  avails.createTeacherAvailabilities
   );
 
 router.post('/test', 
@@ -22,7 +22,16 @@ router.post('/test',
   controller.getSchedulesByTeacher
 );
 
-router.put('/edit/:requestId', controller.editRequest);
+router.put('/edit',
+  avails.deleteAvailsByRequest,
+  controller.editRequest,
+  // same process as new request
+  controller.getScheduleDataByRequest, 
+  controller.filterBookendedLessons, 
+  controller.fetchDriveTimes,
+  controller.calculateTeacherAvailabilities,
+  avails.createTeacherAvailabilities
+  );
 
 router.delete('/delete/:requestId', controller.deleteRequest);
 
