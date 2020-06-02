@@ -39,7 +39,7 @@ const ViewRequests = (props) => {
           <Grid container spacing={3}>
             {props.requests.filter(request => request.student_id === student.id).map(request => (
               <Grid item xs>
-                <RequestCard request={request} />
+                <RequestCard request={request} student={student} />
               </Grid>
           ))}
             <Grid item xs>

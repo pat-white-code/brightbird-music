@@ -6,9 +6,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditRequestModal from './EditRequestModal';
 
 const useStyles = makeStyles({
   root: {
@@ -50,9 +50,7 @@ export default function RequestCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton>
-          <EditIcon />
-        </IconButton>
+        <EditRequestModal request={props.request} />
         <IconButton onClick={()=>{props.deleteRequest(props.request.id)}}>
           <DeleteIcon />
         </IconButton>
