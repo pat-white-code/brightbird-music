@@ -3,6 +3,7 @@ import { Container, Grid } from '@material-ui/core';
 // import { makeStyles } from '@material-ui/core/styles';
 import RequestCard from '../containers/RequestCard';
 import FormModal from './FormModal';
+import AddStudentModal from './AddStudentModal';
 
 // const useStyles = makeStyles((theme) => ({
 //   margin: {
@@ -49,6 +50,7 @@ const ViewRequests = (props) => {
         </>
       )
       )}
+      <AddStudentModal />
     </Container>
   )
 }
