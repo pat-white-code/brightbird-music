@@ -120,6 +120,18 @@ export const addRequest = request => {
   }
 }
 
+export const editRequest = request => {
+  return async dispatch => {
+    try {
+      let response = await axios.put('/api/requests/edit', request)
+      console.log(response);
+      dispatch({type:'DATABASE_UPDATED'})
+    } catch(err) {
+      console.log(err);
+    }
+  }
+}
+
 // export const deleteRequest = requestId => {
 //   return dispatch => {
 //     axios.delete(`/api/requests/delete/${requestId}`)

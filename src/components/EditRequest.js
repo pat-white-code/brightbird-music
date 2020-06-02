@@ -25,7 +25,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EditRequest = (props) => {
-  const { request, user, handleClose } = props;
+  const { 
+    request, 
+    user, 
+    handleClose,
+    editRequest
+  } = props;
   // instrument
   // lesson duration  
   const classes = useStyles();
@@ -59,9 +64,7 @@ const EditRequest = (props) => {
     e.preventDefault();
     let studentAge = Math.abs(moment(request.dob).diff(moment(), 'years'));
     console.log('STUDENT AGE', studentAge)
-    // props.addRequest({
-    //   instrumentId, addressId, experience, lessonDuration, studentId: props.student.id, studentAge
-    // })
+    editRequest({instrumentId, addressId, experience, lessonDuration, studentAge, requestId: request.id})
     handleClose()
   }
 
