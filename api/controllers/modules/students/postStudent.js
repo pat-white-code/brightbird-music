@@ -10,12 +10,12 @@ const pool = require('../../../mysql/connection');
 const postStudent = (req, res) => {
   let sql = `
     INSERT INTO students (
-      client_id, first_name, last_name, dob, active, address_id
+      client_id, first_name, last_name, dob, active
     )
     VALUES
-      (?, ?, ?, ?, 1, ?);
+      (?, ?, ?, ?, 1);
   `
-  let replacements = [req.body.clientId, req.body.firstName, req.body.lastName, req.body.dob, req.body.addressId]
+  let replacements = [req.body.clientId, req.body.firstName, req.body.lastName, req.body.dob]
   sql = mysql.format(sql, replacements);
   pool.query(sql, (err, results)=> {
     if(err){return res.status(500).send(err)}
