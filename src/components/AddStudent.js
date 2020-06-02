@@ -29,12 +29,15 @@ const AddStudent = (props) => {
   const classes = useStyles();
   const history = useHistory();
 
+  const {user} = props;
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [dob, setDob] = useState(new Date());
   const [instrumentId, setInstrumentId] = useState(0);
   const [experience, setExperience] = useState(0);
   const [lessonDuration, setLessonDuration] = useState(30);
+  const [addressId, setAddressId] = useState(user.addresses[0]);
 
   const handleFirstName = e => {
     console.log('firstName : ', firstName)
@@ -59,14 +62,20 @@ const AddStudent = (props) => {
     setLessonDuration(e.target.value)
   }
 
+  const handleAddressId = e => {
+    console.log('ADDRESS', addressId);
+    setAddressId(e.target.value)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let studentAge = Math.abs(moment(dob).diff(moment(), 'years'));
-    let addressId = props.user.addressId;
-    console.log( firstName, lastName, dob, instrumentId, experience, lessonDuration, studentAge );
-    axios.post('/api/students', {firstName, lastName, dob, addressId, clientId:props.user.id})
+    console.log('postStudent:  ', props.user.id, dob, lastName, firstName);
+    // console.log( firstName, lastName, dob, instrumentId, experience, lessonDuration, studentAge );
+    axios.post('/api/students', {firstName, lastName, dob, clientId:props.user.id})
       .then(res => {
         console.log(res)
+        console.log('postRequests', res.data.id, instrumentId, lessonDuration, studentAge, addressId, experience)
         axios.post('/api/requests', {studentId: res.data.id, instrumentId, lessonDuration, studentAge, addressId, experience})
         .then(res => console.log(res))
         .then(()=> {
@@ -137,6 +146,17 @@ const AddStudent = (props) => {
         </Select>
         <FormHelperText>Lessons providede Weekly</FormHelperText>
       </FormControl>
+      <FormControl className={classes.formControl}>
+          <Select 
+            labelId="address-select"
+            id="address"
+            value={addressId}
+            onChange={handleAddressId}>
+            {user.addresses.map(address => (
+              <MenuItem key={address.id} value={address.id}>{address.address}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       <Button variant='contained' color='inherit'>Additional Student</Button>
       <Button variant='contained' color='secondary' type='submit'>Next </Button>
     </form>

@@ -6,7 +6,7 @@ import Fade from '@material-ui/core/Fade';
 // import IconButton from '@material-ui/core/IconButton';
 // import EditIcon from '@material-ui/icons/Edit';
 // import EditRequest from '../containers/EditRequest';
-import StudentForm from '../containers/StudentForm';
+import AddStudent from '../containers/AddStudent';
 import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -54,7 +54,7 @@ export default function AddStudentModal(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <StudentForm handleClose={handleClose} />
+            <AddStudent handleClose={handleClose} />
           </div>
         </Fade>
       </Modal>
