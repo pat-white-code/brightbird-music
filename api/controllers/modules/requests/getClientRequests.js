@@ -12,7 +12,7 @@ const getClientRequests = (req, res) => {
     JOIN instruments
       ON service_requests.instrument_id = instruments.id
   JOIN addresses
-    ON addresses.id = students.address_id
+    ON addresses.id = service_requests.address_id
   WHERE clients.id = ?
     AND service_requests.is_active = 1;
   `

@@ -1,5 +1,5 @@
 import AddStudent from '../components/AddStudent';
-// import { initialAddress } from '../redux/actions';
+import { addStudent } from '../redux/actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -8,10 +8,10 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchTopProps = dispatch => {
-//   return {
-//     initialAddress: (addressId) => dispatch(initialAddress(addressId))
-//   }
-// }
+const mapDispatchTopProps = dispatch => {
+  return {
+    addStudent: (student, request) => dispatch(addStudent(student, request))
+  }
+}
 
-export default connect(mapStateToProps)(AddStudent);
+export default connect(mapStateToProps, mapDispatchTopProps)(AddStudent);

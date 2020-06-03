@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@material-ui/core';
 import DatePicker from './DatePicker';
 import moment from 'moment';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +28,7 @@ const AddStudent = (props) => {
   const classes = useStyles();
   const history = useHistory();
 
-  const {user} = props;
+  const {user, addStudent, handleClose} = props;
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -70,23 +69,14 @@ const AddStudent = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let studentAge = Math.abs(moment(dob).diff(moment(), 'years'));
-    console.log('postStudent:  ', props.user.id, dob, lastName, firstName);
-    // console.log( firstName, lastName, dob, instrumentId, experience, lessonDuration, studentAge );
-    axios.post('/api/students', {firstName, lastName, dob, clientId:props.user.id})
-      .then(res => {
-        console.log(res)
-        console.log('postRequests', res.data.id, instrumentId, lessonDuration, studentAge, addressId, experience)
-        axios.post('/api/requests', {studentId: res.data.id, instrumentId, lessonDuration, studentAge, addressId, experience})
-        .then(res => console.log(res))
-        .then(()=> {
-          // If this is the modal, close modal, if this is the initial add student page, push history to availability.
-          if(props.handleClose) {
-            props.handleClose()
-          } else {
-            history.push('/availability')
-          }
-        })
-      }).catch(err => alert(err))
+    let student = {firstName, lastName, dob, clientId:user.id}
+    let request = {instrumentId, lessonDuration, studentAge, addressId}
+    addStudent(student, request)
+    if(handleClose) {
+      handleClose()
+    } else {
+      history.push('/availability')
+    }
   }
 
   return (

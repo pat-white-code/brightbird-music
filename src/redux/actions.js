@@ -132,6 +132,37 @@ export const editRequest = request => {
   }
 }
 
+export const addStudent = (student, request) => {
+  return async dispatch => {
+    try {
+      let postStudent = await axios.post('/api/students', student)
+      console.log('POST STUDENT', postStudent)
+      let studentId = postStudent.data.id
+      let postRequest = await axios.post('/api/requests', {...request, studentId})
+      console.log(postRequest)
+      dispatch({type:'DATABASE_UPDATED'})
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+}
+//   axios.post('/api/students', {firstName, lastName, dob, clientId:props.user.id})
+//       .then(res => {
+//         console.log(res)
+//         console.log('postRequests', res.data.id, instrumentId, lessonDuration, studentAge, addressId, experience)
+//         axios.post('/api/requests', {studentId: res.data.id, instrumentId, lessonDuration, studentAge, addressId, experience})
+//         .then(res => console.log(res))
+//         .then(()=> {
+//           // If this is the modal, close modal, if this is the initial add student page, push history to availability.
+//           if(props.handleClose) {
+//             props.handleClose()
+//           } else {
+//             history.push('/availability')
+//           }
+//         })
+//       }).catch(err => alert(err))
+
 // export const deleteRequest = requestId => {
 //   return dispatch => {
 //     axios.delete(`/api/requests/delete/${requestId}`)
