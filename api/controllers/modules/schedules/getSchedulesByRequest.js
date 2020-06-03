@@ -5,7 +5,7 @@ const getSchedulesByRequest = (req, res) => {
   const {instrumentId, zipCode, studentAge} = req.query;
 
   let sql = `
-    SELECT 
+  SELECT 
     teachers.id AS teacher_id, 
       teachers.first_name, 
       teachers.last_name, 
@@ -36,7 +36,7 @@ const getSchedulesByRequest = (req, res) => {
     JOIN students
       ON lessons.student_id = students.id
     JOIN addresses
-      ON students.address_id = addresses.id
+      ON lessons.address_id = addresses.id
   -- student info here 
   -- instrumentQuery goes here... 
     WHERE teacher_instruments.inst_id = ?
