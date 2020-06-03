@@ -20,7 +20,6 @@ const AddressForm = (props) => {
   const classes = useStyles();
 
   const {
-    addUserAddress,
     user
   } = props;
 
@@ -65,7 +64,7 @@ const AddressForm = (props) => {
       .then(()=> history.push('/signup/student'))
       .catch(err=> console.log(err))
   }
-  
+
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
       <TextField id='street' label="Street" required onChange={handleStreet} />

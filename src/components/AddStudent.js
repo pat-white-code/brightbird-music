@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@material-ui/core';
 import DatePicker from './DatePicker';
@@ -32,15 +32,15 @@ const AddStudent = (props) => {
     user,
     addStudent, 
     handleClose, 
-    getAddressesByUser,
-    dbUpdatedAt
+    // getAddressesByUser,
+    // dbUpdatedAt
   } = props;
 
-  useEffect(()=>{
-    getAddressesByUser(user.id)
-    // https://github.com/facebook/create-react-app/issues/6880
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, dbUpdatedAt)
+  // useEffect(()=>{
+  //   getAddressesByUser(user.id)
+  //   // https://github.com/facebook/create-react-app/issues/6880
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, dbUpdatedAt)
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
