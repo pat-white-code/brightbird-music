@@ -54,6 +54,7 @@ const AddressForm = (props) => {
     axios.post(`/api/addresses/${props.user.id}`, 
       { address:fullAddress, streetLineTwo, city, geoState, zipCode })
       .then(res => props.initialAddress(res.data.id))
+      .then(()=> props.getAddressesByUser(props.user.id))
       .then(()=> history.push('/signup/student'));
       // .catch(err=> setErr(err.response.data));
   }

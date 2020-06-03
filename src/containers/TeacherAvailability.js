@@ -6,7 +6,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     requests: state.requests,
-    requestIsLoaded: state.requestIsLoaded
+    requestIsLoaded: state.requestIsLoaded,
+    dbUpdatedAt: state.dbUpdatedAt
   }
 }
 
