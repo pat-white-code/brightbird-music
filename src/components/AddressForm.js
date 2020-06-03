@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
-import state from '../redux/state';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
@@ -19,15 +18,21 @@ const useStyles = makeStyles((theme) => ({
 const AddressForm = (props) => {
   const history = useHistory();
   const classes = useStyles();
-  const [address, setAddress] = useState('');
+
+  const {
+    addUserAddress,
+    user
+  } = props;
+
+  const [street, setStreet] = useState('');
   const [streetLineTwo, setStreetLineTwo] = useState('');
   const [city, setCity] = useState('');
   const [geoState, setGeoState] = useState('');
   const [zipCode, setZipCode] = useState('');
 
-  const handleAddress = e => {
-    console.log('Address : ',address)
-    setAddress(e.target.value)
+  const handleStreet = e => {
+    console.log('Address : ',street)
+    setStreet(e.target.value)
   }
   const handleStreetLineTwo = e => {
     console.log('Street 2:', streetLineTwo)
@@ -49,18 +54,21 @@ const AddressForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let fullAddress = `${address}, ${city}, ${geoState} ${zipCode}`;
-    console.log(state);
-    axios.post(`/api/addresses/${props.user.id}`, 
-      { address:fullAddress, streetLineTwo, city, geoState, zipCode })
-      .then(res => props.initialAddress(res.data.id))
-      .then(()=> props.getAddressesByUser(props.user.id))
-      .then(()=> history.push('/signup/student'));
-      // .catch(err=> setErr(err.response.data));
+    let fullAddress = `${street}, ${city}, ${geoState} ${zipCode}`;
+    // console.log(state);
+    let address = {
+      address: fullAddress, streetLineTwo, city, geoState, zipCode
+    }
+    axios.post(`/api/addresses/${user.id}`, address)
+      // .then(res => props.initialAddress(res.data.id))
+      .then(()=> props.getAddressesByUser(user.id))
+      .then(()=> history.push('/signup/student'))
+      .catch(err=> console.log(err))
   }
+  
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
-      <TextField id='address' label="Address" required onChange={handleAddress} />
+      <TextField id='street' label="Street" required onChange={handleStreet} />
       <TextField id='streetLineTwo' label="Street Line 2" onChange={handleStreetLineTwo} />
       <TextField id='city' label="City" onChange={handleCity} required />
       <TextField id='geoState' label='State' onChange={handleGeoState} />

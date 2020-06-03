@@ -20,20 +20,6 @@ const TeacherAvailability  = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dbUpdatedAt]);
 
-  // componentDidMount(){
-  //   // this.props.fetchClientRequests(this.props.user.id);
-  //   // this.props.getAvailabilitiesByUser(this.props.user.id);
-  //   // this.props.getRequestsWithAvail(this.props.user.id);
-  // }
-
-
-  // fetchQualifiedTeachers = () => {
-  //   console.log('REQUESTS:',this.props.requests)
-  //   this.props.requests.forEach(request => {
-  //     console.log(request); 
-  //     this.props.getSchedulesByRequest(request)})
-  // }
-
 
   return(
     <Container maxWidth="md">

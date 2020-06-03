@@ -1,5 +1,5 @@
 import AddressForm from '../components/AddressForm';
-import { initialAddress, getAddressesByUser } from '../redux/actions';
+import { getAddressesByUser, addUserAddress } from '../redux/actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchTopProps = dispatch => {
   return {
-    initialAddress: (addressId) => dispatch(initialAddress(addressId)),
+    // initialAddress: (addressId) => dispatch(initialAddress(addressId)),
+    addUserAddress: (userId, address) => dispatch(addUserAddress(userId, address)),
     getAddressesByUser: (userId) => dispatch(getAddressesByUser(userId))
   }
 }
