@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ViewRequests from '../components/ViewRequests';
-import { getRequestsWithAvail } from '../redux/actions';
+import { getRequestsWithAvail, getStudentsByUser } from '../redux/actions';
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +12,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getRequestsWithAvail: (userId) => dispatch(getRequestsWithAvail(userId))
+    getRequestsWithAvail: (userId) => dispatch(getRequestsWithAvail(userId)),
+    getStudentsByUser: (userId) => dispatch(getStudentsByUser(userId))
   }
 }
 

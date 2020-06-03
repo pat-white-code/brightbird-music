@@ -141,8 +141,7 @@ export const addStudent = (student, request) => {
       let postRequest = await axios.post('/api/requests', {...request, studentId})
       console.log(postRequest)
       dispatch({type:'DATABASE_UPDATED'})
-    }
-    catch(err) {
+    } catch(err) {
       console.log(err)
     }
   }

@@ -18,7 +18,8 @@ const ViewRequests = (props) => {
   const {
     dbUpdatedAt,
     user,
-    getRequestsWithAvail
+    getRequestsWithAvail,
+    getStudentsByUser
   } = props;
   // const classes=useStyles()
   // get requests from state
@@ -27,6 +28,7 @@ const ViewRequests = (props) => {
   // Then let student requests = props.requests.filter(request => request.student_id = student.id)
 
   useEffect(() => {
+    getStudentsByUser(user.id)
     getRequestsWithAvail(user.id)
     // https://github.com/facebook/create-react-app/issues/6880
     // eslint-disable-next-line react-hooks/exhaustive-deps

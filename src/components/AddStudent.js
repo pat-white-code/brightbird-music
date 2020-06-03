@@ -36,7 +36,7 @@ const AddStudent = (props) => {
   const [instrumentId, setInstrumentId] = useState(0);
   const [experience, setExperience] = useState(0);
   const [lessonDuration, setLessonDuration] = useState(30);
-  const [addressId, setAddressId] = useState(user.addresses[0]);
+  const [addressId, setAddressId] = useState(user.addresses[0].id);
 
   const handleFirstName = e => {
     console.log('firstName : ', firstName)
@@ -70,7 +70,7 @@ const AddStudent = (props) => {
     e.preventDefault();
     let studentAge = Math.abs(moment(dob).diff(moment(), 'years'));
     let student = {firstName, lastName, dob, clientId:user.id}
-    let request = {instrumentId, lessonDuration, studentAge, addressId}
+    let request = {instrumentId, lessonDuration, studentAge, addressId, experience}
     addStudent(student, request)
     if(handleClose) {
       handleClose()
